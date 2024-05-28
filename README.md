@@ -32,5 +32,5 @@ Conception site d'apprentissage de développement avec des tutoriels.
   - Initialiser tailwind : [ici](https://flowbite.com/docs/getting-started/symfony/)
   - ne pas oublier : 
        composer require symfony/webpack-encore-bundle <br>
-       npm run dev
+       npm run watch
   - Initialiser flowbite cdn: [ici](https://flowbite.com/docs/getting-started/quickstart/#include-via-cdn) 
