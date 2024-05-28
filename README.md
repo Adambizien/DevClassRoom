@@ -30,3 +30,4 @@ Conception site d'apprentissage de développement avec des tutoriels.
 
 
  composer require symfony/webpack-encore-bundle
+npm run dev
