@@ -28,6 +28,8 @@ Conception site d'apprentissage de développement avec des tutoriels.
     - Enfin ajouter le template error
     - Si vous modifiez le template error, supprimez le cache pour que les modifications soient prises en compte.(php bin/console cache:clear).
 
-
- composer require symfony/webpack-encore-bundle
-npm run dev
+Étape 3 [ici](https://github.com/Adambizien/DevClassRoom/commit/a5c091b3a84dbf9d783a36239723ecf57378c481) : <br>
+  - Initialiser tailwind : [ici](https://flowbite.com/docs/getting-started/symfony/)
+  - ne pas oublier : 
+       composer require symfony/webpack-encore-bundle <br>
+       npm run dev
