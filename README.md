@@ -33,3 +33,4 @@ Conception site d'apprentissage de développement avec des tutoriels.
   - ne pas oublier : 
        composer require symfony/webpack-encore-bundle <br>
        npm run dev
+  - Initialiser flowbite cdn: [ici](https://flowbite.com/docs/getting-started/quickstart/#include-via-cdn) 
