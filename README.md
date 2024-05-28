@@ -19,7 +19,7 @@ Conception site d'apprentissage de développement avec des tutoriels.
       faire le .env.local avec le nom de database voulue <br>
       php bin/console doctrine:database:create <br>
       
-Étape 2 [ici](https://github.com/Adambizien/NWSKanbanProject/commit/40ebe0982e157ea03d4de0134622d7835bef90ae) : <br>
+Étape 2 [ici](https://github.com/Adambizien/DevClassRoom/commit/20a43793b4a3c2b818f5c88af2af8579f44bb72f) : <br>
   - Faire un subscribe pour styliser nos pages d'erreur : <br>
     - php  bin/console make:subscriber <br>
         -> ExceptionSubscriber <br>
