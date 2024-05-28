@@ -18,3 +18,12 @@ Conception site d'apprentissage de développement avec des tutoriels.
       composer require --dev orm-fixtures <br>
       faire le .env.local avec le nom de database voulue <br>
       php bin/console doctrine:database:create <br>
+      
+Étape 2 [ici](https://github.com/Adambizien/NWSKanbanProject/commit/40ebe0982e157ea03d4de0134622d7835bef90ae) : <br>
+  - Faire un subscribe pour styliser nos pages d'erreur : <br>
+    - php  bin/console make:subscriber <br>
+        -> ExceptionSubscriber <br>
+        ->  kernel.exception <br>
+    - Puis modifier le ExceptionSubscriber.php <br>
+    - Enfin ajouter le template error
+    - Si vous modifiez le template error, supprimez le cache pour que les modifications soient prises en compte.(php bin/console cache:clear).
