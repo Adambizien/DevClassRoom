@@ -27,3 +27,6 @@ Conception site d'apprentissage de développement avec des tutoriels.
     - Puis modifier le ExceptionSubscriber.php <br>
     - Enfin ajouter le template error
     - Si vous modifiez le template error, supprimez le cache pour que les modifications soient prises en compte.(php bin/console cache:clear).
+
+
+ composer require symfony/webpack-encore-bundle
