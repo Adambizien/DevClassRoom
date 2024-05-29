@@ -27,10 +27,38 @@ Conception site d'apprentissage de développement avec des tutoriels.
     - Puis modifier le ExceptionSubscriber.php <br>
     - Enfin ajouter le template error
     - Si vous modifiez le template error, supprimez le cache pour que les modifications soient prises en compte.(php bin/console cache:clear).
+- Faire le style avec tailwind [ici](https://github.com/Adambizien/DevClassRoom/commit/80410afad7799b574efe88ecfa1b3b1f27426ddb) 
 
 Étape 3 [ici](https://github.com/Adambizien/DevClassRoom/commit/a5c091b3a84dbf9d783a36239723ecf57378c481) : <br>
   - Initialiser tailwind : [ici](https://flowbite.com/docs/getting-started/symfony/)
   - ne pas oublier : 
        composer require symfony/webpack-encore-bundle <br>
        npm run watch
-  - Initialiser flowbite cdn: [ici](https://flowbite.com/docs/getting-started/quickstart/#include-via-cdn) 
+  - Initialiser flowbite cdn: [ici](https://flowbite.com/docs/getting-started/quickstart/#include-via-cdn)
+    
+Étape 4 (branche : [UserInterface](https://github.com/Adambizien/DevClassRoom/commits/UserInterface) ) : <br>    
+
+  - Implémenter le user et le système de connexion :
+    - Avec les commandes :
+      composer require symfony/security-bundle <br>
+      
+      php bin/console make:user <br>
+      ->  <br>
+      -> <br>
+      -> email <br>
+      -> <br>
+      Ne pas oublier d'ajouter :<br>
+      status, createdAt, updatedAt, name, firstname, phoneNumber et dateOfBirth avec php bin/console make:entity <br>
+      
+      php bin/console make:security:form-login <br>
+      -> <br>
+      -> <br>
+      
+      php bin/console make:registration-form <br>
+      -> yes <br>
+      -> no <br>
+      -> no <br>
+
+    php bin/console doctrine:schema:update --force
+  - Faire le style des interfaces register et login [ici](https://github.com/Adambizien/DevClassRoom/commit/48e4c3c9142b0e5b84c3ca19218c7ffb94bd17b4)
+  
