@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <main class="max-w-lg mx-auto p-7 mt-10 rounded-3xl " style="background-color:#7D97F4">
+        <h1 class="text-2xl font-bold mb-5">Formulaire d'inscription</h1>
+
+        
+        {% if errors is not empty %}
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
+                <ul>
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {{ form_start(registrationForm) }}
+            
+            <div class="mb-5">
+                {{ form_label(registrationForm.role, 'Choisissez votre rôle', {'label_attr': {'class': 'block text-sm font-medium text-gray-900 mb-2'}}) }}
+                <div class="flex items-center space-x-4">
+                    {% for child in registrationForm.role %}
+                        <div class="flex items-center">
+                            {{ form_widget(child, {'attr': {'class': 'form-radio h-4 w-4 transition duration-150 ease-in-out focus:ring-purple-500 ','style':'color:#4748EE'}}) }}
+                            {{ form_label(child, null, {'label_attr': {'class': 'ml-2 block text-sm text-gray-900'}}) }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="mb-5">
+                {{ form_widget(registrationForm.firstName,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Nom* :'}}) }}
+            </div>
+            <div class="mb-5">
+                {{ form_widget(registrationForm.name,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Prénom* :'}}) }}
+            </div>
+            <div class="mb-5">
+                {{ form_widget(registrationForm.phoneNumber,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Numéro de téléphone :'}}) }}
+            </div>
+            <div class="mb-5">
+                {{ form_widget(registrationForm.dateOfBirth,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5'}}) }}
+            </div>
+             <div class="mb-5">
+                {{ form_widget(registrationForm.email,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Email* :'}}) }}
+            </div>
+            <div class="mb-5">
+                {{ form_widget(registrationForm.plainPassword,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Mot de passe* :'}}) }}
+            </div>
+            
+            <div class="mb-5 flex items-center">
+                {{ form_widget(registrationForm.agreeTerms,{'attr':{'class':'w-4 h-4  bg-gray-100 border-gray-300 rounded focus:ring-purple-500  focus:ring-2','style':'color:#4748EE'}}) }}
+                <label for="registrationForm_agreeTerms" class="ms-2 text-sm font-medium text-gray-900 ">
+                    J'accepte les <a href="#" class="text-blue-600  hover:underline">conditions générales</a>
+                </label>
+            </div>
+
+            <button type="submit" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none w-full " style="background-color:#4748EE">Créer un compte</button>
+            
+            <div class="mt-5">
+                Déjà inscrit ?
+                <a href="{{ path('app_login') }}" class="text-blue-600 hover:underline">Connectez-vous.</a>
+            </div>
+
+        {{ form_end(registrationForm) }}
+    
+    </main>
+    
+
+    
+      
+{% endblock %}
