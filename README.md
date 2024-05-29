@@ -36,10 +36,7 @@ Conception site d'apprentissage de développement avec des tutoriels.
        npm run watch
   - Initialiser flowbite cdn: [ici](https://flowbite.com/docs/getting-started/quickstart/#include-via-cdn)
     
-Étape 4 (branche : [UserInterface](https://github.com/Adambizien/DevClassRoom/commits/UserInterface) ) : <br>
-  
-      php bin/console make:entity <br>
-      
+Étape 4 (branche : [UserInterface](https://github.com/Adambizien/DevClassRoom/commits/UserInterface) ) : <br>    
 
   - Implémenter le user et le système de connexion :
     - Avec les commandes :
