@@ -27,6 +27,7 @@ Conception site d'apprentissage de développement avec des tutoriels.
     - Puis modifier le ExceptionSubscriber.php <br>
     - Enfin ajouter le template error
     - Si vous modifiez le template error, supprimez le cache pour que les modifications soient prises en compte.(php bin/console cache:clear).
+- Faire le style avec tailwind [ici](https://github.com/Adambizien/DevClassRoom/commit/80410afad7799b574efe88ecfa1b3b1f27426ddb) 
 
 Étape 3 [ici](https://github.com/Adambizien/DevClassRoom/commit/a5c091b3a84dbf9d783a36239723ecf57378c481) : <br>
   - Initialiser tailwind : [ici](https://flowbite.com/docs/getting-started/symfony/)
