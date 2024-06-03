@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block body %}
+
+{% if app.user and app.user.roles[0] == 'ROLE_AWAITING_VALIDATION' %}
+    <div class="flex justify-between items-start">
+        <div class="w-1/2 pl-5">
+            <div class=" max-w-xl mx-auto  p-7 mt-10 rounded-3xl" style="background-color:#7D97F4">
+                Bonjour, Merci de votre intérêt pour devenir formateur sur notre plateforme ! <br>
+                <br>
+                Afin de garantir la qualité et l'authenticité de nos formateurs, nous vous demandons de nous fournir l'une des deux informations suivantes : <br>
+                <br>
+                1. Un lien vers votre profil LinkedIn :  <br>
+                    Assurez-vous que votre profil LinkedIn est à jour et complet, incluant vos expériences professionnelles, vos compétences, et toute autre information pertinente. Cela nous permettra de vérifier vos qualifications et de confirmer que vous êtes bien un professionnel du domaine. <br>
+                <br>
+                2. Une adresse email professionnelle :  <br>
+                Vous pouvez également nous envoyer un email depuis une adresse professionnelle liée à une organisation ou institution reconnue. Par exemple, un email provenant d'une université, d'une entreprise connue, ou d'une autre entité crédible dans votre domaine d'expertise. <br>
+                <br>
+                Ces mesures sont mises en place pour garantir que tous nos formateurs sont qualifiés et pour offrir la meilleure expérience possible à nos utilisateurs. Une fois que nous aurons reçu et vérifié l'une de ces informations, nous serons ravis de vous accueillir en tant que formateur sur notre site. <br>
+                <br>
+                Merci de votre compréhension et de votre coopération.
+            </div>
+
+        </div>
+
+    <div class="w-1/2">
+{% endif %}
+        {{ form_start(form) }}
+            <div class="max-w-xl mx-auto p-7 mt-10 rounded-3xl" style="background-color:#FF7568">
+                <h1 class="text-2xl font-bold mb-5">Nous Contacter</h1>
+
+                {% for message in app.flashes('success') %}
+                    <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 ">
+                        {{ message }} 
+                    </div>
+                {% endfor %}
+
+                <div class="mb-5">
+                    {% if app.user  %}
+                        {% set fullName = app.user.firstName ~ ' ' ~ app.user.name %}
+                        {{ form_widget(form.name,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Nom et prénom','value': fullName }}) }}
+                    {% else %}
+                        {{ form_widget(form.name,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Nom et prénom'}}) }}
+                    {% endif %}
+                </div>
+                <div class="mb-5">
+                    {% if app.user %}
+                        {{ form_widget(form.phone,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Numéro de téléphone','value': app.user.phoneNumber }}) }}
+                    {% else %}
+                        {{ form_widget(form.phone,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Numéro de téléphone'}}) }}
+                    {% endif %}
+                </div>
+                <div class="mb-5">
+                    {# {{dump(app.user)}} #}
+                    {% if app.user %}
+                        {{ form_widget(form.email,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Email','value': app.user.email }}) }}
+                    {% else %}
+                        {{ form_widget(form.email,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Email'}}) }}
+                    {% endif %}
+                </div>
+                <div class="mb-5">
+                    {{ form_widget(form.subject,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Objet'}}) }}
+                </div>
+                <div class="mb-5">
+                    {{ form_widget(form.message,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Message'}}) }}
+                </div>
+
+                <button class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none w-full" style="background-color:#B63E38" type="submit">
+                    Envoyer
+                </button>
+            </div>
+        {{ form_end(form) }}
+{% if app.user and app.user.roles[0] == 'ROLE_AWAITING_VALIDATION' %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
