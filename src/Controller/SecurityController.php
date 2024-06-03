@@ -6,12 +6,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class SecurityController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        if ($this->security->isGranted('ROLE_USER') || $this->security->isGranted('ROLE_AWAITING_VALIDATION') || $this->security->isGranted('ROLE_TEACHER') || $this->security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_home');
+        }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 

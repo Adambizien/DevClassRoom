@@ -1,21 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
     <form method="post" class="max-w-lg mx-auto p-7 mt-10 rounded-3xl " style="background-color:#7D97F4">
-        <h1 class="text-2xl font-bold mb-5">Formulaire de connection</h1>
+        <h1 class="text-2xl font-bold mb-5">Formulaire de connexion</h1>
         {% if error %}
-            <div  class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div  class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        {# {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %} #}
+        
         <div class="mb-5">
-            <input type="email" value="{{ last_username }}" name="_username" id="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5" placeholder="Email :" required autofocus>
+            <input type="email" value="{{ last_username }}" name="_username" id="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5" placeholder="Email" required autofocus>
         </div>
         <div class="mb-5">
             <input type="password" name="_password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5" placeholder="Mot de passe" required>
@@ -27,6 +23,10 @@
         <button class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none w-full " style="background-color:#4748EE" type="submit">
             Se connecter
         </button>
+
+        <div class="mt-5">
+            Vous n'avez pas de compte ? <a href="{{ path('app_register') }}" class="text-blue-600 hover:underline">Inscrivez-vous.</a>
+        </div>
     </form>
 
 {% endblock %}
