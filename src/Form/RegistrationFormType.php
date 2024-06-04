@@ -24,7 +24,7 @@ class RegistrationFormType extends AbstractType
             ->add('role', ChoiceType::class, [
                 'choices' => [
                     'Utilisateur' => 'ROLE_USER',
-                    'Professeur' => 'ROLE_AWAITING_VALIDATION',
+                    'Formateur' => 'ROLE_AWAITING_VALIDATION',
                 ],
                 'expanded' => true,
                 'multiple' => false,
