@@ -74,6 +74,11 @@ Conception site d'apprentissage de développement avec des tutoriels.
       avec les commande : <br> 
       php bin/console make:controller <br> 
       php bin/console make:form
+    
+Étape 7 (branche : [profile](https://github.com/Adambizien/DevClassRoom/commits/profile/) ) : <br>    
+  - Implémenter l'interface profil avec les edit des infos du User: [ici](https://github.com/Adambizien/DevClassRoom/commit/e2df45d3e1e0737d67d7b6d050f52f3fa45e014b)
+      php bin/console make:controller <br> 
+      php bin/console make:form
 
 
   
