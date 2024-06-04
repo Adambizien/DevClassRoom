@@ -61,4 +61,19 @@ Conception site d'apprentissage de développement avec des tutoriels.
 
     php bin/console doctrine:schema:update --force
   - Faire le style des interfaces register et login [ici](https://github.com/Adambizien/DevClassRoom/commit/48e4c3c9142b0e5b84c3ca19218c7ffb94bd17b4)
+    
+Étape 5 (branche : [homeHeaderFooter](https://github.com/Adambizien/DevClassRoom/tree/homeHeaderFooter) ) : <br>    
+
+  - Implémenter le home, le header et le footer
+    
+Étape 6 (branche : [contactUs](https://github.com/Adambizien/DevClassRoom/tree/contactUs) ) : <br>    
+  - Implémenter la page mail pour envoyer un mail aux adminitrateur si le user veux devenir formateur ou tout simplement nous contacter: <br> 
+      composer require symfony/mailer <br> 
+      allez dans mailtrap.io puir comfigurer le MAILER_DSN dans le .env ensuite faire l'interface de mail. <br> 
+      et enfin faire le formulaire [ici](https://github.com/Adambizien/DevClassRoom/commit/d6f492c87923d5f151fe8c6b532322cc654084b3) 
+      avec les commande : <br> 
+      php bin/console make:controller <br> 
+      php bin/console make:form
+
+
   
