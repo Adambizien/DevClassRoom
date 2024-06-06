@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\EditEmailType;
 use App\Form\EditPasswordType;
 use App\Form\EditPersonalInfoType;
@@ -12,9 +13,15 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 class ProfileController extends AbstractController
 { 
+    private $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
     #[Route('/profile', name: 'profile')]
     
     public function profile(): Response
@@ -127,5 +134,17 @@ class ProfileController extends AbstractController
            'form' => $form->createView(),
            'errors' => $errors
        ]);
+    }
+
+    #[Route('/profile/unsubscribe', name: 'profile_edit_unsubscribe')]
+    public function unsubscribe(EntityManagerInterface $entityManager): Response
+    {
+       $user = $this->getUser();
+        if ($user !== null) {
+            $this->tokenStorage->setToken(null);
+            $entityManager->remove($user);
+            $entityManager->flush();
+        }
+       return $this->redirectToRoute('app_home');
     }
 }

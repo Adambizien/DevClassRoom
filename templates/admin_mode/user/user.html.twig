@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Mode{% endblock %}
+
+{% block body %}
+<div class="flex bg-gray-100">
+    <nav class="h-screen">
+        {% include 'leftNavbar.html.twig' %}
+    </nav>
+
+    <div class="flex-1 p-10">
+        <h1 class="text-3xl font-bold mb-5">Utilisateur</h1>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500 ">
+                <thead class="text-xs text-gray-700 uppercase bg-[#FF7568]">
+                    <tr>
+                        <th scope="col" class="py-3 px-6">ID</th>
+                        <th scope="col" class="py-3 px-6">Nom</th>
+                        <th scope="col" class="py-3 px-6">Prénom</th>
+                        <th scope="col" class="py-3 px-6">Email</th>
+                        <th scope="col" class="py-3 px-6">Date de naissance</th>
+                        <th scope="col" class="py-3 px-6">Numéro de téléphone</th>
+                        <th scope="col" class="py-3 px-6">Rôle</th>
+                        <th scope="col" class="py-3 px-6">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr class="bg-white border-b">
+                            <td class="py-4 px-6">{{ user.id }}</td>
+                            <td class="py-4 px-6">{{ user.firstname }}</td>
+                            <td class="py-4 px-6">{{ user.name }}</td>
+                            <td class="py-4 px-6">{{ user.email }}</td>
+                            <td class="py-4 px-6">{{ user.dateOfBirth|date('d/m/Y') }}</td>
+                            <td class="py-4 px-6">{{ user.phoneNumber }}</td>
+                            <td class="py-4 px-6">{{ user.roles[0] }}</td>
+
+                            
+                            <td class="py-4 px-6">
+                                <a href="{{ path('app_admin_mode_user_edit', {'id': user.id}) }}" class="text-blue-500 hover:text-blue-700">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                                    </svg>
+
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

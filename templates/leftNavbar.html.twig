@@ -1,0 +1,20 @@
+<div class="flex h-full">
+    <nav class="w-64 h-full p-5 " style="background-color:#4748EE">
+        <ul class="space-y-4 mt-10">
+            <li>
+                <a href="{{ path('app_admin_mode_user') }}" class="text-white hover:bg-[#7D97F4] {{ app.request.attributes.get('_route') == 'app_admin_mode_user' 
+                    or app.request.attributes.get('_route') == 'app_admin_mode_user_edit'  ? 'bg-[#7D97F4]' : ''  }} p-3 rounded-lg block">Utilisateur</a>
+            </li>
+             <li>
+                <a href="#" class="text-white hover:bg-[#7D97F4] p-3 rounded-lg block">Categories</a>
+            </li>
+            {#
+            <li>
+                <a href="#" class="text-white hover:bg-[#7D97F4] p-3 rounded-lg block">Settings</a>
+            </li>
+            <li>
+                <a href="#" class="text-white hover:bg-[#7D97F4] p-3 rounded-lg block">Logout</a>
+            </li> #}
+        </ul>
+    </nav>
+</div>

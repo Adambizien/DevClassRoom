@@ -45,23 +45,32 @@
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
-                        <a href="{{ path('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profil</a>
+                        <a href="{{ path('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  
+                            {{ app.request.attributes.get('_route') == 'profile' ? 'bg-gray-100 ' : ''  }}">
+                            Profil
+                        </a>
                     </li>
                     
-                    {% if app.user.roles[0]== "ROLE_ADMIN" or app.user.roles[0]== "ROLE_TEACHER"  %}
+                    {% if app.user.roles[0]== "ROLE_ADMIN"  %}
                         <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                {% if app.user.roles[0] == "ROLE_ADMIN" %}
-                                    Menu administrateur
-                                {% else %}
-                                    Menu Formateur
-                                {% endif %}
+                            <a href="{{ path('app_admin_mode_user') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 
+                                {{
+                                    app.request.attributes.get('_route') == 'app_admin_mode_user'  
+                                    or app.request.attributes.get('_route') == ''
+                                    ? 'bg-gray-100 ' : ''  }}">
+                                Menu administrateur
                             </a>
                         </li>
                     {% endif %}
-                   
+                   {% if app.user.roles[0]== "ROLE_TEACHER" %}
+                         <li>
+                            <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Menu Formateur
+                            </a>
+                        </li>
+                   {% endif %}
                     <li>
-                        <a href="{{ path('app_logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Déconnexion</a>
+                        <a href="{{ path('app_logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-100">Déconnexion</a>
                     </li>
                     </ul>
                 </div>

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Mode{% endblock %}
+
+{% block body %}
+<div class="flex  bg-gray-100">
+    <nav class="h-screen">
+        {% include 'leftNavbar.html.twig' %}
+    </nav>
+
+    <main class="flex-1 flex flex-col" >
+        <div class="max-w-lg mx-auto p-7 mt-10 rounded-3xl" style="background-color:#7D97F4">
+            <div class="flex">
+                <a href="{{ path('app_admin_mode_user') }}" class="text-black hover:text-gray-300 mr-3 mt-[2px]">
+                    <svg class="w-8 h-8 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </a>
+                <h1 class="text-2xl font-bold mb-5">Modifier le rôle</h1>
+            </div>
+            
+
+            {{ form_start(form) }}
+                <div class="mb-5">
+                    {{ form_widget(form.role,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Rôle*'}}) }}
+                </div>
+                
+                <button type="submit" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none w-full " style="background-color:#4748EE">Enregistrer les modifications</button>
+
+            {{ form_end(form) }}
+        </div>
+    
+    </main>
+  
+</div>
+{% endblock %}

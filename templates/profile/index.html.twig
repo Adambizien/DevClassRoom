@@ -47,16 +47,21 @@
         {% endif %}
     </div>
 
-    <div class="flex justify-center space-x-2 mt-6">
-        <a href="{{ path('profile_edit') }}" class="btn btn-primary bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
-            Modifier les informations personnelles
-        </a>
-        <a href="{{ path('profile_edit_email') }}" class="btn btn-secondary bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-700">
-            Modifier l'email
-        </a>
-        <a href="{{ path('profile_edit_password') }}" class="btn btn-danger bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700">
-            Modifier le mot de passe
-        </a>
+    <div class="flex justify-center mt-6">
+        <div class="grid grid-cols-2 gap-4 text-center">
+            <a href="{{ path('profile_edit') }}" class="btn btn-primary bg-[#4748EE] text-white py-2 px-4 rounded-lg block">
+                Modifier les informations personnelles
+            </a>
+            <a href="{{ path('profile_edit_email') }}" class="btn btn-secondary bg-[#FF7568] text-white py-2 px-4 rounded-lg block">
+                Modifier l'email
+            </a>
+            <a href="{{ path('profile_edit_password') }}" class="btn btn-danger bg-[#E44E46] text-white py-2 px-4 rounded-lg block">
+                Modifier le mot de passe
+            </a>
+            <a href="{{ path('profile_edit_unsubscribe') }}" onclick="return confirm('Êtes-vous sûr de vouloir vous désinscrire ? Cette action est irréversible.');" class="btn btn-danger bg-red-800 text-white py-2 px-4 rounded-lg block">
+                Se désinscrire
+            </a>
+        </div>
     </div>
 </div>
 

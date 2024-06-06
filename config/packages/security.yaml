@@ -35,6 +35,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/adminMode, roles: ROLE_ADMIN }
         # - { path: ^/, roles: PUBLIC_ACCESS }
         # - { path: ^/profile, roles: ROLE_USER }
     role_hierarchy:
