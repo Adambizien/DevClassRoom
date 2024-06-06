@@ -79,6 +79,12 @@ Conception site d'apprentissage de développement avec des tutoriels.
   - Implémenter l'interface profil avec les edit des infos du User: [ici](https://github.com/Adambizien/DevClassRoom/commit/e2df45d3e1e0737d67d7b6d050f52f3fa45e014b)
       php bin/console make:controller <br> 
       php bin/console make:form
+    
+Étape 8 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
+  - Implémenter l'interface admin mode avec les edit des rôles des Users: [ici](https://github.com/Adambizien/DevClassRoom/commit/2d8d72acadf0cbd68d7de94d7a31ed12f2cf38e0)
+      php bin/console make:controller <br> 
+      php bin/console make:form
+    
 
 
   
