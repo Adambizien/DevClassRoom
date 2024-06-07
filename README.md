@@ -86,7 +86,7 @@ Conception site d'apprentissage de développement avec des tutoriels.
       php bin/console make:form
 
 Étape 9 (branche : [Entities](https://github.com/Adambizien/DevClassRoom/commits/Entities) ) : <br>    
-  - Implémenter de toutes les entiter que nous avons besoin pour ce site :
+  - Implémenter de toutes les entiter que nous avons besoin pour ce site : [ici](https://github.com/Adambizien/DevClassRoom/commit/2a511142b5c1e88d463263c5e1fdf0245cea446f)
       ![Diagramme sans nom drawio](https://github.com/Adambizien/DevClassRoom/assets/127780676/db6f4616-a6c4-46d3-b38b-0846e53289eb) <br>
       
       php bin/console make:entity <br>
