@@ -84,7 +84,13 @@ Conception site d'apprentissage de développement avec des tutoriels.
   - Implémenter l'interface admin mode avec les edit des rôles des Users: [ici](https://github.com/Adambizien/DevClassRoom/commit/2d8d72acadf0cbd68d7de94d7a31ed12f2cf38e0) <br> 
       php bin/console make:controller <br> 
       php bin/console make:form
-    
+
+Étape 9 (branche : [Entities](https://github.com/Adambizien/DevClassRoom/commits/Entities) ) : <br>    
+  - Implémenter de toutes les entiter que nous avons besoin pour ce site :
+      ![Diagramme sans nom drawio](https://github.com/Adambizien/DevClassRoom/assets/127780676/db6f4616-a6c4-46d3-b38b-0846e53289eb) <br>
+      
+      php bin/console make:entity <br>
+      php bin/console doctrine:schema:update --force
 
 
   
