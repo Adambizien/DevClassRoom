@@ -92,7 +92,7 @@ Conception site d'apprentissage de développement avec des tutoriels.
       
       php bin/console make:entity <br>
       php bin/console doctrine:schema:update --force
-  - Faire un make CRUD sur toutes les entiter : [ici](https://github.com/Adambizien/DevClassRoom/commit/b7b8550a1ef5a0dd8697a14722d17be540be00a1)
+  - Faire un make CRUD sur toutes les entiter : [ici](https://github.com/Adambizien/DevClassRoom/commit/b7b8550a1ef5a0dd8697a14722d17be540be00a1) <br>
     php bin/console make:crud
 
 
