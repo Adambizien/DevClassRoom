@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutorials index{% endblock %}
+
+{% block body %}
+    <h1>Tutorials index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>ImageName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tutorial in tutorials %}
+            <tr>
+                <td>{{ tutorial.id }}</td>
+                <td>{{ tutorial.title }}</td>
+                <td>{{ tutorial.description }}</td>
+                <td>{{ tutorial.author }}</td>
+                <td>{{ tutorial.status }}</td>
+                <td>{{ tutorial.createdAt ? tutorial.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tutorial.updatedAt ? tutorial.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tutorial.imageName }}</td>
+                <td>
+                    <a href="{{ path('app_tutorials_show', {'id': tutorial.id}) }}">show</a>
+                    <a href="{{ path('app_tutorials_edit', {'id': tutorial.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tutorials_new') }}">Create new</a>
+{% endblock %}
