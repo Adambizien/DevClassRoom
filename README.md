@@ -95,5 +95,6 @@ Conception site d'apprentissage de développement avec des tutoriels.
   - Faire un make CRUD sur toutes les entiter : [ici](https://github.com/Adambizien/DevClassRoom/commit/b7b8550a1ef5a0dd8697a14722d17be540be00a1) <br>
     php bin/console make:crud
 
+https://github.com/dustin10/VichUploaderBundle
 
   
