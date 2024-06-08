@@ -52,6 +52,9 @@ class Tutorials
     #[ORM\ManyToMany(targetEntity: Categories::class, inversedBy: 'tutorials')]
     private Collection $categories;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageName = null;
+
     public function __construct()
     {
         $this->histories = new ArrayCollection();
@@ -216,6 +219,18 @@ class Tutorials
     public function removeCategory(Categories $category): static
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): static
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }

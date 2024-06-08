@@ -41,6 +41,9 @@ class Content
     #[ORM\ManyToOne(inversedBy: 'content')]
     private ?Chapter $chapter = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageName = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +153,18 @@ class Content
     public function setChapter(?Chapter $chapter): static
     {
         $this->chapter = $chapter;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): static
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }
