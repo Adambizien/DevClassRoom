@@ -36,6 +36,7 @@ security:
     access_control:
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/adminMode, roles: ROLE_ADMIN }
+        - { path: ^/tutorials, roles: ROLE_TEACHER }
         # - { path: ^/, roles: PUBLIC_ACCESS }
         # - { path: ^/profile, roles: ROLE_USER }
     role_hierarchy:
