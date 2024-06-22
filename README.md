@@ -95,6 +95,12 @@ Conception site d'apprentissage de développement avec des tutoriels.
   - Faire un make CRUD sur toutes les entiter : [ici](https://github.com/Adambizien/DevClassRoom/commit/b7b8550a1ef5a0dd8697a14722d17be540be00a1) <br>
     php bin/console make:crud
 
-https://github.com/dustin10/VichUploaderBundle
+
+
+Étape 10 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
+  - Implémenter l'interface admin mode des catégories et des tutoriels : [ici](https://github.com/Adambizien/DevClassRoom/commit/cc933927839d75c273ceb9c52506b74fc6e7b034) <br>
+      php bin/console make:controller <br> 
+      php bin/console make:form
+      implementation de vichUploaderBundle pour la gestion des images : [ici](https://github.com/dustin10/VichUploaderBundle)
 
   
