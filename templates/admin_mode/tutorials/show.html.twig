@@ -74,7 +74,7 @@
                                     <div class="bg-white rounded-lg shadow-lg w-64">
                                         <div class="relative text-white text-lg font-semibold p-4 rounded-t-lg chapter-header" style="background-color:#4748EE">
                                             <div class="w-55">
-                                                <span class="break-words">Chapitre </span> <span class="chapter-title">{{ chapter.stepOrder }}</span> : {{ chapter.title }}
+                                                <span class="break-words">Chapitre </span> <span class="chapter-title break-words">{{ chapter.stepOrder }}</span> <span class="break-words"> : {{ chapter.title }}</span>
                                             </div>
                                             <div class="absolute top-[-6px] right-0 p-2 flex space-x-2">
                                                 <a href="{{ path('app_chapter_edit', {'tutorialId' : tutorial.id,'id': chapter.id }) }}" class="text-white hover:text-gray-300">
@@ -91,9 +91,9 @@
                                                     </svg>
                                                 </a>
                                                 {% if chapter.status == 'on' %}
-                                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-300">{{ chapter.status }}</span>
+                                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-300">Visible</span>
                                                 {% else %}
-                                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-300">{{ chapter.status }} </span>
+                                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-300">Invisible</span>
                                                 {% endif %} 
                                             </div>
                                         </div>
@@ -102,7 +102,9 @@
                                                 {% if chapter.id == content.chapter.id %}
                                                     <div class="p-2 content_drag " data-content-id="{{ content.id }}">
                                                         <div class=" relative bg-white rounded-lg shadow p-6 mx-2 h-auto flex items-center justify-center">
-                                                            <h3 class="font-semibold text-gray-800">Contenu <span class="content-title">{{content.stepOrder}}</span> : {{ content.title }}</h3>
+                                                            
+                                                            <h3 class="font-semibold text-gray-800  w-full break-words ">Contenu <span class="content-title ">{{content.stepOrder}}</span> : {{ content.title }}</h3>
+                                                           
                                                             <div class="absolute top-[-3px] right-0  flex space-x-1">
                                                                 <a href="{{ path('app_content_edit', {'tutorialId' : tutorial.id,'chapterId': chapter.id,'id': content.id }) }}" class="text-white hover:text-gray-300">
                                                                     <svg class="w-6 h-6 text-gray-800 hover:text-[#4748EE]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -118,9 +120,9 @@
                                                                     </svg>
                                                                 </a>
                                                                 {% if content.status == 'on' %}
-                                                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-300">{{ content.status }}</span>
+                                                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-300">Visible</span>
                                                                 {% else %}
-                                                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-300">{{ content.status }} </span>
+                                                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-300">Invisible</span>
                                                                 {% endif %} 
                                                             </div>
                                                             <div class="absolute top-[0px] left-0  flex space-x-1">

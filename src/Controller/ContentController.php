@@ -7,6 +7,7 @@ use App\Form\ContentType;
 
 use App\Repository\ChapterRepository;
 use App\Repository\ContentRepository;
+use App\Repository\TutorialsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,17 +17,16 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/tutorial/{tutorialId}/chapter/{chapterId}/content')]
 class ContentController extends AbstractController
 {
-    #[Route('/', name: 'app_content_index', methods: ['GET'])]
-    public function index(ContentRepository $contentRepository): Response
-    {
-        return $this->render('admin_mode/content/index.html.twig', [
-            'contents' => $contentRepository->findAll(),
-        ]);
-    }
 
     #[Route('/new', name: 'app_content_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager,ContentRepository $contentRepository,ChapterRepository $chapterRepository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,ContentRepository $contentRepository,ChapterRepository $chapterRepository,TutorialsRepository $tutorialsRepository): Response
     {
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($request->attributes->get('tutorialId'));
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         $content = new Content();
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
@@ -73,21 +73,20 @@ class ContentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_content_show', methods: ['GET'])]
-    public function show(Content $content): Response
-    {
-        return $this->render('admin_mode/content/show.html.twig', [
-            'content' => $content,
-        ]);
-    }
 
     #[Route('/{id}/edit', name: 'app_content_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Content $content, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Content $content, EntityManagerInterface $entityManager,TutorialsRepository $tutorialsRepository): Response
     {
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
 
         $tutorialId = $request->attributes->get('tutorialId');
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($tutorialId);
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         $errors = [];
         foreach ($form->getErrors(true) as $error) {
             $errors[] = $error->getMessage();
@@ -112,8 +111,14 @@ class ContentController extends AbstractController
 
     #[Route('/{id}', name: 'app_content_delete', methods: ['POST'])]
 
-    public function delete(Request $request, Content $content, EntityManagerInterface $entityManager,ContentRepository $contentRepository): Response
+    public function delete(Request $request, Content $content, EntityManagerInterface $entityManager,ContentRepository $contentRepository,TutorialsRepository $tutorialsRepository): Response
     {
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($request->attributes->get('tutorialId'));
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         if ($this->isCsrfTokenValid('delete'.$content->getId(), $request->getPayload()->get('_token'))) {
             $stepOrderRemove = $content->getStepOrder();
             $entityManager->remove($content);
@@ -129,8 +134,14 @@ class ContentController extends AbstractController
     }
 
     #[Route('/StatusEdit/{id}', name: 'app_content_status_edit', methods: ['GET'])]
-    public function statusEdit(Content $content, EntityManagerInterface $entityManager,Request $request): Response
+    public function statusEdit(Content $content, EntityManagerInterface $entityManager,Request $request,TutorialsRepository $tutorialsRepository): Response
     {
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($request->attributes->get('tutorialId'));
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         
         $content->setUpdatedAt(new \DateTimeImmutable());
         $status = $content->getStatus() === 'on' ? 'off' : 'on';
@@ -141,8 +152,14 @@ class ContentController extends AbstractController
     }
     
     #[Route('/reorder/{id}', name: 'app_content_update_order', methods: ['POST'])]
-    public function reorder(Request $request, EntityManagerInterface $entityManager, ContentRepository $contentRepository, ChapterRepository $chapterRepository): Response
+    public function reorder(Request $request, EntityManagerInterface $entityManager, ContentRepository $contentRepository, ChapterRepository $chapterRepository,TutorialsRepository $tutorialsRepository): Response
     {
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($request->attributes->get('tutorialId'));
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         $content = $contentRepository->findContentById($request->attributes->get('id'));
         $stepOrder = $request->request->get('order');
         $newChapterId = $request->request->get('newChapterId');

@@ -24,6 +24,13 @@ class ChapterController extends AbstractController
         $form = $this->createForm(ChapterType::class, $chapter);
         $form->handleRequest($request);
         $tutorialId = $request->attributes->get('tutorialId');
+
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($tutorialId);
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         $errors = [];
         foreach ($form->getErrors(true) as $error) {
             $errors[] = $error->getMessage();
@@ -51,11 +58,17 @@ class ChapterController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_chapter_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Chapter $chapter, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Chapter $chapter, EntityManagerInterface $entityManager,TutorialsRepository $tutorialsRepository): Response
     {
         $form = $this->createForm(ChapterType::class, $chapter);
         $form->handleRequest($request);
         $tutorialId = $request->attributes->get('tutorialId');
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($tutorialId);
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         $errors = [];
         foreach ($form->getErrors(true) as $error) {
             $errors[] = $error->getMessage();
@@ -77,10 +90,17 @@ class ChapterController extends AbstractController
 
     #[Route('/{id}', name: 'app_chapter_delete', methods: ['POST'])]
 
-    public function delete(Request $request, EntityManagerInterface $entityManager,ChapterRepository $chapterRepository): Response
+    public function delete(Request $request, EntityManagerInterface $entityManager,ChapterRepository $chapterRepository,TutorialsRepository $tutorialsRepository): Response
     {
-        $chapter = $chapterRepository->findChapterById($request->attributes->get('id'));
+        
         $tutorialId = $request->attributes->get('tutorialId');
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($tutorialId);
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
+        $chapter = $chapterRepository->findChapterById($request->attributes->get('id'));
         if ($this->isCsrfTokenValid('delete'.$chapter->getId(), $request->getPayload()->get('_token'))) {
             $stepOrderRemove = $chapter->getStepOrder();
             $contents = $chapter->getContent();
@@ -105,8 +125,14 @@ class ChapterController extends AbstractController
     }
 
     #[Route('/StatusEdit/{id}', name: 'app_chapter_status_edit', methods: ['GET'])]
-    public function statusEdit(Chapter $chapter, EntityManagerInterface $entityManager,Request $request): Response
+    public function statusEdit(Chapter $chapter, EntityManagerInterface $entityManager,Request $request,TutorialsRepository $tutorialsRepository): Response
     {   
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($request->attributes->get('tutorialId'));
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         $chapter->setUpdatedAt(new \DateTimeImmutable());
         $status = $chapter->getStatus() === 'on' ? 'off' : 'on';
         $chapter->setStatus($status);
@@ -115,9 +141,15 @@ class ChapterController extends AbstractController
     }
 
     #[Route('/reorder/{id}', name: 'app_chapter_update_order', methods: ['POST'])]
-    public function reorder(Request $request, EntityManagerInterface $entityManager,ChapterRepository $chapterRepository): Response
+    public function reorder(Request $request, EntityManagerInterface $entityManager,ChapterRepository $chapterRepository,TutorialsRepository $tutorialsRepository): Response
     {
         $tutorialId = $request->attributes->get('tutorialId');
+        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+            $tutorial = $tutorialsRepository->findTutorialById($request->attributes->get('tutorialId'));
+            if($tutorial->getAuthor() !== $this->getUser()->getEmail()){
+                return $this->redirectToRoute('app_tutorials_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         $chapterId = $request->attributes->get('id');
         $chapter = $chapterRepository->findChapterById($chapterId);
         $stepOrder = $request->request->get('order');

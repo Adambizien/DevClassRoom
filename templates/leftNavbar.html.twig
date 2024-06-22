@@ -1,6 +1,7 @@
 <div class="flex h-full">
     <div class="w-64 h-full p-5 " style="background-color:#4748EE">
         <ul class="space-y-4 mt-5">
+        {% if app.user.roles[0] != "ROLE_TEACHER" %}
             <li>
                 <a 
                     href="{{ path('app_admin_mode_user') }}" 
@@ -20,6 +21,7 @@
                     Categories
                 </a>
             </li>
+        {% endif %}
             
             <li>
                 <a 
