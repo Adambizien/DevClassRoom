@@ -18,6 +18,7 @@ class EditRoleType extends AbstractType
                 'Admin' => 'ROLE_ADMIN',
                 'Utilisateur' => 'ROLE_USER',
                 'Attente de Validation' => 'ROLE_AWAITING_VALIDATION',
+                'Formateur' => 'ROLE_TEACHER',
             ],
             'expanded' => false,
             'multiple' => false,

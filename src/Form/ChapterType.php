@@ -8,26 +8,23 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 class ChapterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('stepOrder')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('status')
-            ->add('tutorials', EntityType::class, [
-                'class' => Tutorials::class,
-                'choice_label' => 'id',
-            ])
-        ;
+
+            ->add('title', null, [
+                'empty_data' => '',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer un titre',
+                    ]),
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

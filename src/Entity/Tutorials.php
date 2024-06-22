@@ -7,8 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TutorialsRepository::class)]
+#[Vich\Uploadable]
 class Tutorials
 {
     #[ORM\Id]
@@ -54,6 +58,10 @@ class Tutorials
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageName = null;
+
+    #[Vich\UploadableField(mapping: 'tutorials', fileNameProperty: 'imageName')]
+    #[Assert\Image()]
+    private ?File $imageFile = null;
 
     public function __construct()
     {
@@ -231,6 +239,18 @@ class Tutorials
     public function setImageName(?string $imageName): static
     {
         $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile): static
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }

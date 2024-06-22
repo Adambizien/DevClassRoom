@@ -6,7 +6,12 @@ use App\Repository\ContentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
 #[ORM\Entity(repositoryClass: ContentRepository::class)]
+#[Vich\Uploadable]
 class Content
 {
     #[ORM\Id]
@@ -43,6 +48,14 @@ class Content
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageName = null;
+
+
+    #[Vich\UploadableField(mapping: 'content', fileNameProperty: 'imageName')]
+    #[Assert\Image()]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $contentType = null;
 
     public function getId(): ?int
     {
@@ -165,6 +178,31 @@ class Content
     public function setImageName(?string $imageName): static
     {
         $this->imageName = $imageName;
+
+        return $this;
+    }
+
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile): static
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function getContentType(): ?string
+    {
+        return $this->contentType;
+    }
+
+    public function setContentType(string $contentType): static
+    {
+        $this->contentType = $contentType;
 
         return $this;
     }

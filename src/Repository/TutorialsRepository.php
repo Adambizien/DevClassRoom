@@ -31,6 +31,25 @@ class TutorialsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    public function findTutorialById($tutorialId): ?Tutorials
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.id = :tutorialId')
+            ->setParameter('tutorialId', $tutorialId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findAllTutorialsWithAuthorEmail($email): array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.author = :email')
+            ->setParameter('email', $email)
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    public function findOneBySomeField($value): ?Tutorials
 //    {
 //        return $this->createQueryBuilder('t')

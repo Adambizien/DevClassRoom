@@ -1,0 +1,94 @@
+{{ form_start(form) }}
+    <div class="mb-5">
+        {{ form_widget(form.title, {'attr': {'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5', 'placeholder': 'Titre'}}) }}
+    </div>
+    
+    <div class="mb-5" id="buttons">
+        <button id="text-button" type="button" onclick="showField('text')" class=" text-white font-bold py-2 px-4 rounded" style="background-color:#1A0F91">Text</button>
+        <button id="code-button" type="button" onclick="showField('code')" class=" text-white font-bold py-2 px-4 rounded" style="background-color:#4748EE">Code</button>
+        <button id="video-button" type="button" onclick="showField('video')" class=" text-white font-bold py-2 px-4 rounded" style="background-color:#4748EE">Vidéo</button>
+        <button id="image-button" type="button" onclick="showField('image')" class=" text-white font-bold py-2 px-4 rounded" style="background-color:#4748EE">Image</button>
+    </div>
+
+    <div class="mb-5 field " id="text-field">
+        {{ form_widget(form.text, {'attr': {'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5', 'placeholder': 'Text'}}) }}
+    </div>
+    <div class="mb-5 field hidden" id="code-field">
+        {{ form_widget(form.code, {'attr': {'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5', 'placeholder': 'Code'}}) }}
+    </div>
+    <div class="mb-5 field hidden" id="video-field">
+        {{ form_widget(form.video, {'attr': {'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5', 'placeholder': 'Vidéo'}}) }}
+        <p class="mt-2 text-sm text-gray-700 ml-1">Veuillez entrer l'URL d'une vidéo YouTube.</p>
+    </div>
+    <div class="mb-5 field hidden" id="image-field">
+        <label for="imageFile" class="block mb-2 text-sm font-medium text-gray-900">Image</label>
+        <div id="imageFile">
+            {{ form_widget(form.imageFile, {'attr': {'class': 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none'}}) }}
+            <p class="mt-1 text-sm text-gray-700" id="file_input_help">Téléchargez une image (PNG, JPG, etc.).</p>
+        </div>
+    </div>
+    
+    <button class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none w-full" style="background-color:#4748EE">{{ button_label|default('Enregistrer') }}</button>
+    
+{{ form_end(form) }}
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const isEdit = {{ is_edit }};
+        if (isEdit) {
+            document.getElementById('buttons').style.display = 'none';
+            showPreFilledFields();
+        } else {
+            hideAllFields(true);
+        }
+    });
+
+   function hideAllFields(withText = false) {
+        const fields = document.querySelectorAll('.field');
+        fields.forEach(field => {
+            const inputs = field.querySelectorAll('input, textarea');
+            inputs.forEach(input => input.value = '');
+            field.style.display = 'none';
+        });
+        if (withText) {
+            document.getElementById('text-field').style.display = 'block';
+        }
+    }
+
+    function showField(field) {
+        document.getElementById('text-button').style.backgroundColor = '#4748EE';
+        document.getElementById('code-button').style.backgroundColor = '#4748EE';
+        document.getElementById('video-button').style.backgroundColor = '#4748EE';
+        document.getElementById('image-button').style.backgroundColor = '#4748EE';
+        hideAllFields();
+        document.getElementById(field + '-field').style.display = 'block';
+        document.getElementById(field + '-button').style.backgroundColor = '#1A0F91';
+
+    }
+
+    function showPreFilledFields() {
+        const text = document.getElementById('text-field');
+        const code = document.getElementById('code-field');
+        const video = document.getElementById('video-field');
+        const image = document.getElementById('image-field');
+        const type = {{ type }};
+        switch (type.id) {
+            case 'text-field':
+                text.style.display = 'block';
+                break;
+            case 'code-field':
+                code.style.display = 'block';
+                text.style.display = 'none';
+                break;
+            case 'video-field':
+                video.style.display = 'block';
+                text.style.display = 'none';
+                break;
+            case 'image-field':
+                image.style.display = 'block';
+                text.style.display = 'none';
+                break;
+        }
+    }
+</script>

@@ -1,0 +1,247 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutoriels{% endblock %}
+
+{% block body %}
+<div class="flex bg-gray-100 h-full">
+    <div class="h-auto">
+        {% include 'leftNavbar.html.twig' %}
+    </div>
+
+    <div class=" flex-1 flex flex-col ">
+        <div class="mx-auto w-[1000px] p-7 mt-10 rounded-3xl"  style="background-color:#7D97F4">
+            <div class="flex">
+                <a href="{{ path('app_tutorials_index') }}" class="text-black hover:text-gray-300 mr-3 mt-[2px]">
+                    <svg class="w-8 h-8 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </a>
+                <h1 class="text-2xl font-bold mb-5">Tutorials</h1>
+            </div>
+            <div >
+                <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-auto">
+                    {% if tutorial.status == 'on' %}
+                        <div class="absolute top-2 right-2 w-3 h-3 bg-green-500 rounded-full"></div>
+                    {% else %}
+                        <div class="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full"></div>
+                    {% endif %}
+                   
+
+                    {% if vich_uploader_asset(tutorial,'imageFile') %}
+                        <a href="#">
+                            <img src="{{ vich_uploader_asset(tutorial,'imageFile') }}" alt=""  class="w-full h-48 object-cover rounded-t-lg">
+                        </a>
+                    {% else %}
+                        <a herf="#">
+                            <div class="bg-gray-300 h-48 rounded-t-lg"></div>
+                        </a>
+                    {% endif %}
+                    <div class="p-5 relative">
+                        <a href="#">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ tutorial.title }}</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ tutorial.description }}</p>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Auteur : {{ tutorial.author }}</p> <!-- Author paragraph -->
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#4748EE] rounded-lg">
+                                Lire la suite
+                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                </svg>
+                            </a>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">{{ tutorial.updatedAt|date('d/m/Y') }}</span>
+                        </div>
+                        <div class="absolute right-0 top-2">
+                            <a href="{{ path('app_tutorials_edit', {'id': tutorial.id}) }}">
+                                <svg class="w-6 h-6 text-gray-800 hover:text-[#4748EE]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="mx-auto w-[1000px]  mt-10 rounded-3xl mb-10">
+            <div class=" flex justify-center">
+                <div class=" w-full bg-white rounded-lg shadow-lg">
+                    <div class=" text-white text-lg font-semibold p-4 rounded-t-lg" style="background-color:#4748EE">
+                        Structure
+                    </div>
+                    <div class="p-4  flex w-full overflow-x-auto allChapter">
+                        {% if chapters is not empty %}
+                            {% for chapter in chapters %}
+                                <div class="mb-4 mx-2 w-64 h-auto chapter_drag" data-chapter-id="{{ chapter.id }}">
+                                    <div class="bg-white rounded-lg shadow-lg w-64">
+                                        <div class="relative text-white text-lg font-semibold p-4 rounded-t-lg chapter-header" style="background-color:#4748EE">
+                                            <div class="w-55">
+                                                <span class="break-words">Chapitre </span> <span class="chapter-title">{{ chapter.stepOrder }}</span> : {{ chapter.title }}
+                                            </div>
+                                            <div class="absolute top-[-6px] right-0 p-2 flex space-x-2">
+                                                <a href="{{ path('app_chapter_edit', {'tutorialId' : tutorial.id,'id': chapter.id }) }}" class="text-white hover:text-gray-300">
+                                                    <svg class="w-6 h-6 text-gray-800 hover:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                                                    </svg>
+                                                </a>
+                                                {{ include('admin_mode/chapter/_delete_form.html.twig',{'tutorialId':tutorial.id}) }}
+                                            </div>
+                                            <div class="absolute bottom-[0px] right-0  flex space-x-1">
+                                                <a href="{{ path('app_chapter_status_edit',{'tutorialId': tutorial.id,'id': chapter.id}) }}"> 
+                                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16 10 3-3m0 0-3-3m3 3H5v3m3 4-3 3m0 0 3 3m-3-3h14v-3"/>
+                                                    </svg>
+                                                </a>
+                                                {% if chapter.status == 'on' %}
+                                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-300">{{ chapter.status }}</span>
+                                                {% else %}
+                                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-300">{{ chapter.status }} </span>
+                                                {% endif %} 
+                                            </div>
+                                        </div>
+                                        <div class="allContent py-3">
+                                            {% for content in contents %}
+                                                {% if chapter.id == content.chapter.id %}
+                                                    <div class="p-2 content_drag " data-content-id="{{ content.id }}">
+                                                        <div class=" relative bg-white rounded-lg shadow p-6 mx-2 h-auto flex items-center justify-center">
+                                                            <h3 class="font-semibold text-gray-800">Contenu <span class="content-title">{{content.stepOrder}}</span> : {{ content.title }}</h3>
+                                                            <div class="absolute top-[-3px] right-0  flex space-x-1">
+                                                                <a href="{{ path('app_content_edit', {'tutorialId' : tutorial.id,'chapterId': chapter.id,'id': content.id }) }}" class="text-white hover:text-gray-300">
+                                                                    <svg class="w-6 h-6 text-gray-800 hover:text-[#4748EE]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                                                                    </svg>
+                                                                </a>
+                                                                {{ include('admin_mode/content/_delete_form.html.twig',{'tutorialId':tutorial.id}) }}
+                                                            </div>
+                                                            <div class="absolute bottom-[0px] right-0  flex space-x-1">
+                                                                <a href="{{ path('app_content_status_edit', {'tutorialId': tutorial.id,'chapterId': chapter.id,'id':content.id}) }}"> 
+                                                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16 10 3-3m0 0-3-3m3 3H5v3m3 4-3 3m0 0 3 3m-3-3h14v-3"/>
+                                                                    </svg>
+                                                                </a>
+                                                                {% if content.status == 'on' %}
+                                                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-300">{{ content.status }}</span>
+                                                                {% else %}
+                                                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-300">{{ content.status }} </span>
+                                                                {% endif %} 
+                                                            </div>
+                                                            <div class="absolute top-[0px] left-0  flex space-x-1">
+                                                                <span class="bg-[#7D97F4] text-[#1A0F91] text-xs font-medium px-2.5 py-0.5 rounded border border-[#1A0F91]">{{ content.contentType }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <a href="{{ path('app_content_new',{'tutorialId': tutorial.id,'chapterId': chapter.id}) }}">
+                                            <div class="w-64 h-auto flex p-4">
+                                                <div class="bg-gray-300 rounded-lg shadow mx-2 w-64 h-10 flex items-center justify-center">
+                                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <a href="{{ path('app_chapter_new',{'tutorialId': tutorial.id}) }}">
+                            <div class="mb-4 mx-2 w-64 h-auto flex">
+                                <div class="bg-gray-300 rounded-lg shadow mb-4 mx-2 w-64 h-20 flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<script>
+$(function() {
+    $(".allChapter").sortable({
+        handle: ".chapter-header",
+        placeholder: "bg-gray-200 border-dashed border-2 border-gray-400 rounded-lg h-20 w-64 mx-5",
+        update: function(event, ui) {
+            var chapterIdSelected = ui.item.data('chapter-id');
+            $(".allChapter .chapter_drag").each(function(index) {
+                var chapterId = $(this).data('chapter-id');
+                var position = $(this).index() + 1;
+                var url = "{{ path('app_chapter_update_order', {'tutorialId': tutorial.id, 'id': 'chapterId'}) }}";
+                url = url.replace('chapterId', chapterId);
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        order: position
+                    },
+                });
+                var chapterTitle = $(this).find(".chapter-title");
+                var newTitle = position;
+                chapterTitle.text(newTitle);
+            });
+        },
+    }).disableSelection();
+
+    $(".allContent").sortable({
+        connectWith: ".allContent",
+        placeholder: "bg-gray-200 border-dashed border-2 border-gray-400 rounded-lg h-20 w-[225px] mx-3",
+        update: function(event, ui) {
+            var contentIdSelected = ui.item.data('content-id');
+            var newChapterId = ui.item.closest('.chapter_drag').data('chapter-id');
+
+            $(".allContent .content_drag").each(function(index) {
+                var contentId = $(this).data('content-id');
+                var position = $(this).index() + 1;
+                var chapterId = $(this).closest('.chapter_drag').data('chapter-id');
+                
+                if(contentId === contentIdSelected) {
+                    var url = "{{ path('app_content_update_order', {'tutorialId': tutorial.id, 'chapterId': 'chapterId', 'id': 'contentId'}) }}";
+                    url = url.replace('chapterId', chapterId);
+                    url = url.replace('contentId', contentId);
+                    
+                    let isContentMoved = (chapterId !== newChapterId);
+                    
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            order: position,
+                            newChapterId: newChapterId,
+                            isContentMoved: isContentMoved
+                        },
+                    });
+                    var contentTitle = $(this).find(".content-title");
+                    var newTitle = position;
+                    contentTitle.text(newTitle);
+                }else{
+                    var url = "{{ path('app_content_update_order', {'tutorialId': tutorial.id, 'chapterId': 'chapterId', 'id': 'contentId'}) }}";
+                    url = url.replace('chapterId', chapterId);
+                    url = url.replace('contentId', contentId);
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            order: position,
+                            newChapterId: chapterId,
+                            isContentMoved: false
+                        },
+                    });
+                    var contentTitle = $(this).find(".content-title");
+                    var newTitle = position;
+                    contentTitle.text(newTitle);
+                }
+            });
+        },
+    }).disableSelection();
+
+   
+});
+</script>
+{% endblock %}
+
+
+

@@ -1,7 +1,7 @@
 
 {% set current_route = app.request.attributes.get('_route') %}
 
-<footer class="w-full  {% if current_route in ['app_admin_mode_user', '', ''] %} {% else %} mt-10  {% endif %} " style="background-color:#263238">
+<footer class="w-full  {% if current_route in ['app_admin_mode_user', 'app_admin_mode_user_edit', 'app_categories_index','app_categories_new','app_categories_edit','app_tutorials_index','app_tutorials_new','app_tutorials_edit','app_tutorials_show','app_chapter_new','app_chapter_edit','app_content_new','app_content_edit'] %} {% else %} mt-10  {% endif %} " style="background-color:#263238">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">

@@ -8,24 +8,22 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CategoriesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('status')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('tutorials', EntityType::class, [
-                'class' => Tutorials::class,
-                'choice_label' => 'id',
-                'multiple' => true,
+
+            ->add('name',null,[
+                'empty_data' => '',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer un nom de catégorie',
+                    ]),
+                ]
+
             ])
         ;
     }

@@ -31,6 +31,48 @@ class ContentRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+
+    public function countContentByChapterId($chapterId): int
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->andWhere('c.chapter = :chapterId')
+            ->setParameter('chapterId', $chapterId)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    public function findAllContentByTutorialId($tutorialId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.chapter', 'ch') // Jointure avec la relation Many-to-One vers Chapter
+            ->join('ch.tutorials', 't') // Jointure avec la relation Many-to-One vers Tutorial
+            ->andWhere('t.id = :tutorialId')
+            ->setParameter('tutorialId', $tutorialId)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function allContentByChapterId($chapterId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.chapter = :chapterId')
+            ->setParameter('chapterId', $chapterId)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findContentById($contentId): ?Content
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.id = :contentId')
+            ->setParameter('contentId', $contentId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+
 //    public function findOneBySomeField($value): ?Content
 //    {
 //        return $this->createQueryBuilder('c')
