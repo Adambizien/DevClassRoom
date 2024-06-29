@@ -103,8 +103,11 @@ Conception site d'apprentissage de développement avec des tutoriels.
       php bin/console make:form
       implementation de vichUploaderBundle pour la gestion des images : [ici](https://github.com/dustin10/VichUploaderBundle)
 
-Étape 11 (branche : [tutorialsView]() ) : <br>    
-  - Implémenter l'interface de la vue tutoriels  : [ici]() <br>
+Étape 11 (branche : [formationInterface](https://github.com/Adambizien/DevClassRoom/commits/formationInterface) ) : <br>    
+  - Implémenter l'interface de la vue tutoriels  : [ici](https://github.com/Adambizien/DevClassRoom/commit/48a98d55c7b7986d6ffa99d04749fd5bf451d5c8) <br>
+
+Étape 12 (branche : [historiqueInterface]() ) : <br>    
+  - Implémenter l'interface d'historique  : [ici]() <br>
       
 
     
