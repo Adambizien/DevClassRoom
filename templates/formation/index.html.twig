@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations{% endblock %}
+
+{% block body %}
+   
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold leading-tight text-gray-900">Formations</h1>
+        
+        {{ form_start(form) }}
+            <div class="my-4 flex ">
+                <div class="mr-5 w-1/2">
+                    {{ form_label(form.search_tutorial_name, 'Recherche du nom de la formation', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                    {{ form_widget(form.search_tutorial_name, {'attr': {'class': 'mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'}}) }}
+                    {{ form_errors(form.search_tutorial_name) }}
+                </div>
+                <div class=" items-center w-1/2">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sélectionnez les catégories</label>
+                    <div class="ml-2 flex flex-wrap">
+                        {% for category in form.categories %}
+                        <div class="mr-4 mb-2">
+                            <div class="flex items-center">
+                                {{ form_widget(category, {'id': 'category_' ~ category.vars.value,'attr': {'class':'w-4 h-4  bg-gray-100 border-gray-300 rounded focus:ring-purple-500  focus:ring-2','style':'color:#4748EE'}}) }}
+                                <label for="category_{{ category.vars.value }}" class="ml-2 block text-sm text-gray-700">{{ category.vars.label }}</label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {{ form_errors(form.categories) }}
+                </div>
+            </div>
+
+            <div class="flex justify-start">
+                <button type="submit" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none  " style="background-color:#4748EE">
+                    Rechercher
+                </button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+    <div class="container py-8 px-10 flex justify-center items-center w-full ">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 w-10/12 ">
+            {% for tutorial in tutorials %}
+                <div class=" flex flex-col ">
+                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden ">
+                        <div class="relative ">
+                            <div class="absolute bottom-2 left-2">
+                                {% for category in tutorial.categories %}
+                                    {% if category.status == 'on' %}
+                                        <span class="bg-[#4748EE] text-white text-xs font-medium px-2.5 py-0.5 rounded border border-[#4748EE] ">{{ category.name }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% if vich_uploader_asset(tutorial, 'imageFile') %}
+                                <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}">
+                                    <img src="{{ vich_uploader_asset(tutorial, 'imageFile') }}" alt="" class="w-full h-48 object-cover">
+                                </a>
+                            {% else %}
+                                <a herf="{{ path('app_formation_show',{'id': tutorial.id }) }}" >
+                                    <div class="bg-gray-300 h-48 rounded-t-lg object-cover"></div>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="p-5">
+                            <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}">
+                                <h5 class="mb-2 text-2xl font-bold text-gray-900 overflow-hidden whitespace-nowrap overflow-ellipsis">{{ tutorial.title }}</h5>
+                            </a>
+                            <div class="mb-3">
+                                <p class="text-gray-700 leading-normal h-12 overflow-hidden break-words">{{ tutorial.description }}</p>
+                                {% if tutorial.description|length > 90 %}
+                                    <p class="text-gray-700 leading-normal text-sm mt-1">...</p>
+                                {% endif %}
+                            </div>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Auteur : {{ tutorial.author }}</p>
+                            <div class="flex justify-between items-center">
+                                <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-[#4748EE] rounded-lg">
+                                    Lire la suite
+                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </a>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">{{ tutorial.updatedAt|date('d/m/Y') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

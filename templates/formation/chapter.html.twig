@@ -1,0 +1,107 @@
+<div class="max-w-5xl mx-auto py-6 sm:px-6 lg:px-8">
+    <h2 class="text-5xl text-center">{{ currentchapter.title }}</h2>
+    {% for content in contents %}
+        <h2 class="text-3xl mt-5">{{ content.title }}</h2>
+        <hr class="mb-10 mt-5 border-[1.5px] border-gray-400">
+        {% if content.contentType == 'text' %}
+            <p class="mt-4 text-left">
+                {{ content.text | raw}}
+            </p>
+        {% endif %}
+        {% if content.contentType == 'code' %}
+            <div class="flex justify-center mt-4">
+                <div class="relative mt-4 w-9/12">
+                    <pre class="bg-gray-100 rounded-lg p-4 overflow-auto">
+                        <code id="code-{{ content.id }}" class="text-left text-sm leading-relaxed text-gray-800">
+                            {{ content.code | escape }}
+                        </code>
+                    </pre>
+                    <button id="copy-button-{{ content.id }}" onclick="copyCode('code-{{ content.id }}', 'copy-button-{{ content.id }}')" class="absolute top-2 right-2 bg-white text-white px-1 py-1 rounded transition duration-300">
+                        <svg class="w-6 h-6 text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M14 4v3a1 1 0 0 1-1 1h-3m4 10v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2m11-3v10a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V7.87a1 1 0 0 1 .24-.65l2.46-2.87a1 1 0 0 1 .76-.35H18a1 1 0 0 1 1 1Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if content.contentType == 'video' %}
+            
+            <div class="flex flex-col items-center">
+                <iframe src="https://www.youtube.com/embed/DijkRWf4GpQ" width="800" height="456" title="A YouTube video" frameborder="0" allowfullscreen></iframe>
+            </div>
+        {% endif %}
+
+        {% if content.contentType == 'image' %}
+            <div class="flex flex-col items-center">
+                <img src="{{ vich_uploader_asset(content, 'imageFile') }}" alt="" class="w-[500px] h-full object-cover">
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="flex w-full justify-between mt-10">
+        {% if previousChapterId is not null %}
+            <a href="{{ path('app_formation_chapter_show',{'id': tutorial.id,'chapterId': previousChapterId }) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex items-center" style="background-color:#4748EE">
+                <svg class="w-6 h-6 text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+                </svg>
+                <span>Précédent</span>
+            </a>
+        {% else %}
+            <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex items-center" style="background-color:#4748EE">
+                <svg class="w-6 h-6 text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+                </svg>
+                <span>Précédent</span>
+            </a>
+        {% endif %}
+        
+        {% if nextChapterId is not null %}
+            <a href="{{ path('app_formation_chapter_show',{'id': tutorial.id,'chapterId': nextChapterId }) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex items-center" style="background-color:#4748EE">
+                <span class="mr-2">Suivant</span>
+                <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/>
+                </svg>
+            </a>
+        {% else %}
+            <a href="{{ path('app_formation_finish',{'id': tutorial.id}) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex items-center" style="background-color:#4748EE">
+                <span class="mr-2">Suivant</span>
+                <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/>
+                </svg>
+            </a>
+        {% endif %}
+
+    </div>
+   
+
+</div>
+
+<script>
+    function copyCode(codeId, buttonId) {
+        var codeElement = document.getElementById(codeId);
+        var code = codeElement.textContent;
+
+        var tempTextarea = document.createElement('textarea');
+        tempTextarea.value = code;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextarea);
+
+        var buttonElement = document.getElementById(buttonId);
+        buttonElement.innerHTML = `
+            <svg class="w-6 h-6 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+        `;
+
+        setTimeout(() => {
+            buttonElement.innerHTML = `
+                <svg class="w-6 h-6 text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M14 4v3a1 1 0 0 1-1 1h-3m4 10v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2m11-3v10a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V7.87a1 1 0 0 1 .24-.65l2.46-2.87a1 1 0 0 1 .76-.35H18a1 1 0 0 1 1 1Z"/>
+                </svg>
+            `;
+        }, 2000);
+    }
+</script>

@@ -4,45 +4,45 @@
 
 {% block body %}
 <div class="flex bg-gray-100">
-    <nav class="h-screen">
+    <nav class="{% if tutorials is iterable and tutorials|length > 8 %}h-auto{% else %}h-screen{% endif %}">
         {% include 'leftNavbar.html.twig' %}
     </nav>
 
     <div class="flex-1 p-10">
-        <h1 class="text-3xl font-bold mb-5">Tutorials</h1>
+        <h1 class="text-3xl font-bold mb-5">Tutoriels</h1>
         <a href="{{ path('app_tutorials_new') }}" class="inline-flex items-center mb-3 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white  bg-[#4748EE]">
-            Ajouter une Tutorials
+            Ajouter un tutoriel
         </a>
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 ">
                 <thead class="text-xs text-gray-700 uppercase bg-[#FF7568]">
                     <tr>
-                        <th scope="col" class="py-3 px-6">Id</th>
-                        <th scope="col" class="py-3 px-6">Titre</th>
-                        <th scope="col" class="py-3 px-6">Description</th>
-                        <th scope="col" class="py-3 px-6">Auteur</th>
-                        <th scope="col" class="py-3 px-6">Catégorie</th>
-                        <th scope="col" class="py-3 px-6">Status</th>
-                        <th scope="col" class="py-3 px-6">Créé le</th>
-                        <th scope="col" class="py-3 px-6">Modifié le</th>
-                        <th scope="col" class="py-3 px-6">actions</th>
+                        <th scope="col" class="py-3 px-4">Id</th>
+                        <th scope="col" class="py-3 px-4">Titre</th>
+                        <th scope="col" class="py-3 px-4">Description</th>
+                        <th scope="col" class="py-3 px-4">Auteur</th>
+                        <th scope="col" class="py-3 px-4">Catégorie</th>
+                        <th scope="col" class="py-3 px-4">Status</th>
+                        <th scope="col" class="py-3 px-4">Créé le</th>
+                        <th scope="col" class="py-3 px-4">Modifié le</th>
+                        <th scope="col" class="py-3 px-4">actions</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for tutorial in tutorials %}
                     <tr  class="bg-white border-b">
-                        <td class="py-4 px-6">{{ tutorial.id }}</td>
-                        <td class="py-4 px-6">{{ tutorial.title }}</td>
-                        <td class="py-4 px-6">{{ tutorial.description }}</td>
-                        <td class="py-4 px-6">{{ tutorial.author }}</td>
-                        <td class="py-4 px-6">
+                        <td class="py-4 px-4">{{ tutorial.id }}</td>
+                        <td class="py-4 px-4 max-w-48"> <span class="block truncate" title="{{ tutorial.title }}">{{ tutorial.title }}</span></td>
+                        <td class="py-4 px-4 max-w-48"> <span class="block truncate" title="{{ tutorial.description }}">{{ tutorial.description }}</span></td>
+                        <td class="py-4 px-4 max-w-48"> <span class="block truncate" title="{{ tutorial.author }}">{{ tutorial.author }}<span></td>
+                        <td class="py-4 px-4">
                             {% for category in tutorial.categories %}
                                 {% if category.status == 'on' %}
                                     <span class="bg-[#7D97F4] text-[#1A0F91] text-xs font-medium px-2.5 py-0.5 rounded border border-[#1A0F91]">{{ category.name }}</span>
                                 {% endif %}
                             {% endfor %}
                         </td>
-                        <td class="py-4 px-6 flex">
+                        <td class="py-4 px-4 flex">
                             <a href="{{ path('app_tutorials_status_edit', {'id': tutorial.id}) }}"> 
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16 10 3-3m0 0-3-3m3 3H5v3m3 4-3 3m0 0 3 3m-3-3h14v-3"/>
@@ -54,9 +54,9 @@
                                 <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-300">Invisible</span>
                             {% endif %} 
                         </td>
-                        <td class="py-4 px-6">{{ tutorial.createdAt ? tutorial.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                        <td class="py-4 px-6">{{ tutorial.updatedAt ? tutorial.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                        <td class="py-4 px-6 flex">
+                        <td class="py-4 px-4">{{ tutorial.createdAt ? tutorial.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td class="py-4 px-4">{{ tutorial.updatedAt ? tutorial.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td class="py-4 px-4 flex">
                             <a href="{{ path('app_tutorials_show', {'id': tutorial.id}) }}">
                                 <svg class="w-6 h-6 text-gray-800 hover:text-[#4748EE]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
@@ -73,7 +73,7 @@
                     </tr>
                 {% else %}
                     <tr class="bg-white border-b text-center">
-                        <td colspan="9" class="py-4 px-6">Aucun tutoriel trouvé</td>
+                        <td colspan="9" class="py-4 px-4">Aucun tutoriel trouvé</td>
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -14,34 +14,49 @@
                 <a href="{{ path('app_tutorials_index') }}" class="text-black hover:text-gray-300 mr-3 mt-[2px]">
                     <svg class="w-8 h-8 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 </a>
-                <h1 class="text-2xl font-bold mb-5">Tutorials</h1>
+                <h1 class="text-2xl font-bold mb-5">Tutoriel</h1>
             </div>
             <div >
-                <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-auto">
-                    {% if tutorial.status == 'on' %}
-                        <div class="absolute top-2 right-2 w-3 h-3 bg-green-500 rounded-full"></div>
-                    {% else %}
-                        <div class="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full"></div>
-                    {% endif %}
-                   
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-auto">
+                    <div class="relative">
+                        {% if tutorial.status == 'on' %}
+                            <div class="absolute top-2 right-2 w-3 h-3 bg-green-500 rounded-full"></div>
+                        {% else %}
+                            <div class="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full"></div>
+                        {% endif %}
+                    
+                        <div class="absolute bottom-2 left-2">
+                            {% for category in tutorial.categories %}
+                                {% if category.status == 'on' %}
+                                    <span class="bg-[#4748EE] text-white text-xs font-medium px-2.5 py-0.5 rounded border border-[#4748EE] ">{{ category.name }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    
 
-                    {% if vich_uploader_asset(tutorial,'imageFile') %}
-                        <a href="#">
-                            <img src="{{ vich_uploader_asset(tutorial,'imageFile') }}" alt=""  class="w-full h-48 object-cover rounded-t-lg">
-                        </a>
-                    {% else %}
-                        <a herf="#">
-                            <div class="bg-gray-300 h-48 rounded-t-lg"></div>
-                        </a>
-                    {% endif %}
+                        {% if vich_uploader_asset(tutorial,'imageFile') %}
+                            <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}">
+                                <img src="{{ vich_uploader_asset(tutorial,'imageFile') }}" alt=""  class="w-full h-48 object-cover rounded-t-lg">
+                            </a>
+                        {% else %}
+                            <a herf="{{ path('app_formation_show',{'id': tutorial.id }) }}">
+                                <div class="bg-gray-300 h-48 rounded-t-lg"></div>
+                            </a>
+                        {% endif %}
+                    </div>
                     <div class="p-5 relative">
-                        <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ tutorial.title }}</h5>
+                        <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}">
+                            <h5 class="mb-2 text-2xl font-bold text-gray-900 overflow-hidden whitespace-nowrap overflow-ellipsis">{{ tutorial.title }}</h5>
                         </a>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ tutorial.description }}</p>
-                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Auteur : {{ tutorial.author }}</p> <!-- Author paragraph -->
+                        <div class="mb-3">
+                            <p class="text-gray-700 leading-normal h-12 overflow-hidden break-words">{{ tutorial.description }}</p>
+                            {% if tutorial.description|length > 90 %}
+                                <p class="text-gray-700 leading-normal text-sm mt-1">...</p>
+                            {% endif %}
+                        </div>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Auteur : {{ tutorial.author }}</p> 
                         <div class="flex justify-between items-center">
-                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#4748EE] rounded-lg">
+                            <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#4748EE] rounded-lg">
                                 Lire la suite
                                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>

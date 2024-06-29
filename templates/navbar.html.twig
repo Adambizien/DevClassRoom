@@ -26,7 +26,7 @@
           <a href="/" class="block mt-2 {{app.request.attributes.get('_route') == 'app_home' ? 'md:text-blue-700' : 'text-gray-600'  }}" aria-current="page">Accueil</a>
         </li>
         <li>
-          <a href="#" class="block mt-2 {{app.request.attributes.get('_route') == '' ? 'md:text-blue-700' : 'text-gray-600'  }}">Formation</a>
+          <a href="{{ path('app_formation') }}" class="block mt-2 {{app.request.attributes.get('_route') == 'app_formation' ? 'md:text-blue-700' : 'text-gray-600'  }}">Formation</a>
         </li>
         {% if app.user %}
            <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse" >
@@ -55,8 +55,19 @@
                         <li>
                             <a href="{{ path('app_admin_mode_user') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 
                                 {{
-                                    app.request.attributes.get('_route') == 'app_admin_mode_user'  
-                                    or app.request.attributes.get('_route') == ''
+                                    app.request.attributes.get('_route') == 'app_admin_mode_user' 
+                                    or app.request.attributes.get('_route') == 'app_admin_mode_user_edit'
+                                    or  app.request.attributes.get('_route') == 'app_categories_index' 
+                                    or app.request.attributes.get('_route') == 'app_categories_new' 
+                                    or app.request.attributes.get('_route') == 'app_categories_edit'
+                                    or app.request.attributes.get('_route') == 'app_tutorials_index' 
+                                    or app.request.attributes.get('_route') == 'app_tutorials_new' 
+                                    or app.request.attributes.get('_route') == 'app_tutorials_edit' 
+                                    or app.request.attributes.get('_route') == 'app_tutorials_show'
+                                    or app.request.attributes.get('_route') == 'app_chapter_new' 
+                                    or app.request.attributes.get('_route') == 'app_chapter_edit'
+                                    or app.request.attributes.get('_route') == 'app_content_new' 
+                                    or app.request.attributes.get('_route') == 'app_content_edit' 
                                     ? 'bg-gray-100 ' : ''  }}">
                                 Menu administrateur
                             </a>
@@ -64,7 +75,16 @@
                     {% endif %}
                    {% if app.user.roles[0]== "ROLE_TEACHER" %}
                          <li>
-                            <a href="{{ path('app_tutorials_index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <a href="{{ path('app_tutorials_index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  {{
+                                    app.request.attributes.get('_route') == 'app_tutorials_index' 
+                                    or app.request.attributes.get('_route') == 'app_tutorials_new' 
+                                    or app.request.attributes.get('_route') == 'app_tutorials_edit' 
+                                    or app.request.attributes.get('_route') == 'app_tutorials_show'
+                                    or app.request.attributes.get('_route') == 'app_chapter_new' 
+                                    or app.request.attributes.get('_route') == 'app_chapter_edit'
+                                    or app.request.attributes.get('_route') == 'app_content_new' 
+                                    or app.request.attributes.get('_route') == 'app_content_edit' 
+                                    ? 'bg-gray-100 ' : ''  }}">
                                 Menu Formateur
                             </a>
                         </li>

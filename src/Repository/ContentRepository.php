@@ -72,6 +72,18 @@ class ContentRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function findAllContentByChapterIdWithStatusOn($chapterId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.chapter = :chapterId')
+            ->andWhere('c.status = :status')
+            ->setParameter('chapterId', $chapterId)
+            ->setParameter('status', 'on')
+            ->orderBy('c.stepOrder', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 //    public function findOneBySomeField($value): ?Content
 //    {

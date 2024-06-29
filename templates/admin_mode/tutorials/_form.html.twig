@@ -3,7 +3,27 @@
         {{ form_widget(form.title,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Titre'}}) }}
     </div>
     <div class="mb-5">
+        <div class="flex p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Conseil pour la description :</span>
+                <ul class="mt-1.5 list-disc list-inside">
+                    <li>### pour les titres</li>
+                    <li>#### pour les sous-titres</li>
+                    <li>**Mots en gras** pour mettre en gras</li>
+                    <li>♠♣ titre1/retours à la ligne/♣ titre2... ♠ pour les listes numérotées</li>
+                    <li>♥♦ titre1/retours à la ligne/♦ titre2... ♥  pour les listes à puces</li>
+                    <li>~~ pour les séparations</li>
+                    <li>Les retours à la ligne sont pris en compte</li>
+                </ul>
+            </div>
+        </div>
         {{ form_widget(form.description,{'attr':{'class':'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5','placeholder':'Description'}}) }}
+       
+        
     </div>
     <div class="mb-5">
         <label for="imageFile" class="block mb-2 text-sm font-medium text-gray-900">Image</label>
@@ -15,7 +35,7 @@
 
     <div class="mb-5">
         <label for="categories" class="block mb-2 text-sm font-medium text-gray-900">Catégories</label>
-        <div id="categories" class="flex">
+        <div id="categories" class="flex flex-wrap">
             {% for category in form.categories %}
                 <div class="flex items-center ml-2">
                     {{ form_widget(category, {'attr': {'class':'w-4 h-4  bg-gray-100 border-gray-300 rounded focus:ring-purple-500  focus:ring-2','style':'color:#4748EE'}}) }}

@@ -60,6 +60,19 @@ class ChapterRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    // with status on
+    public function getChapterSortByStepOrderByTutorialId($tutorialId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.tutorials = :tutorialId')
+            ->andWhere('c.status = :status')
+            ->setParameter('tutorialId', $tutorialId)
+            ->setParameter('status', 'on')
+            ->orderBy('c.stepOrder', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }   
+
 
     //    public function findOneBySomeField($value): ?Chapter
     //    {
