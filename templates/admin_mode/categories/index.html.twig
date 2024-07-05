@@ -10,9 +10,15 @@
 
     <div class="flex-1 p-10">
         <h1 class="text-3xl font-bold mb-5">Catégories</h1>
-        <a href="{{ path('app_categories_new') }}" class="inline-flex items-center mb-3 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white  bg-[#4748EE]">
-            Ajouter une catégorie
-        </a>
+        <div class="flex w-full justify-between">
+            <form action="{{ path('app_categories_index') }}" method="GET" class="flex space-x-4 mb-3">
+                <input type="text" name="name" placeholder="Nom" class="px-3 py-2 border rounded" value="{{ app.request.query.get('name') }}">
+                <button type="submit" class="px-4 py-2 text-white rounded" style="background-color: #4748EE">Rechercher</button>
+            </form>
+            <a href="{{ path('app_categories_new') }}" class="inline-flex items-center mb-3 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#4748EE]">
+                Ajouter une catégorie
+            </a>
+        </div>
         <div class="overflow-x-auto">
             <table  class="w-full text-sm text-left text-gray-500 ">
                 <thead class="text-xs text-gray-700 uppercase bg-[#FF7568]">

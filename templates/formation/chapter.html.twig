@@ -73,6 +73,21 @@
         {% endif %}
 
     </div>
+    {% if nextChapterId is not null %}
+        <div class="mt-10 flex justify-center">
+            <a  href="{{ path('app_histories',{'id': tutorial.id,'currentChapterId':currentchapter.id,'chapterId': nextChapterId }) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex"  style="background-color:#4748EE">
+                <span class="mr-1"> Confimer que ce chapitre est terminé</span>
+                
+            </a>
+        </div>
+    {% else %}
+         <div class="mt-10 flex justify-center">
+            <a  href="{{ path('app_histories',{'id': tutorial.id,'currentChapterId':currentchapter.id,'chapterId': -2 }) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex"  style="background-color:#4748EE">
+                <span class="mr-1"> Confimer que ce chapitre est terminé</span>
+            </a>
+        </div>
+    {% endif %}
+
    
 
 </div>

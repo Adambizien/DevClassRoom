@@ -7,6 +7,7 @@ use App\Form\EditEmailType;
 use App\Form\EditPasswordType;
 use App\Form\EditPersonalInfoType;
 use App\Form\ProfileType;
+use App\Repository\HistoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -137,10 +138,11 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/unsubscribe', name: 'profile_edit_unsubscribe')]
-    public function unsubscribe(EntityManagerInterface $entityManager): Response
+    public function unsubscribe(EntityManagerInterface $entityManager,HistoriesRepository $historiesRepository): Response
     {
-       $user = $this->getUser();
+        $user = $this->getUser();
         if ($user !== null) {
+            $historiesRepository->removeHistoriesByUserId($user->getId());
             $this->tokenStorage->setToken(null);
             $entityManager->remove($user);
             $entityManager->flush();

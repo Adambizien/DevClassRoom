@@ -18,12 +18,20 @@ use App\Repository\ContentRepository;
 class TutorialsController extends AbstractController
 {
     #[Route('/', name: 'app_tutorials_index', methods: ['GET'])]
-    public function index(TutorialsRepository $tutorialsRepository): Response
+    public function index(Request $request, TutorialsRepository $tutorialsRepository): Response
     {
-        if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
-            $tutorial = $tutorialsRepository->findAllTutorialsWithAuthorEmail($this->getUser()->getEmail());
+        if($request->query->get('title') || $request->query->get('author') ){
+            $auteur = $request->query->get('author');
+            if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+                $auteur = $this->getUser()->getEmail();
+            }
+            $tutorial = $tutorialsRepository->searchTutorial($request->query->get('title'), $auteur);
         }else{
-            $tutorial = $tutorialsRepository->findAll();
+            if($this->getUser()->getRoles()[0] === 'ROLE_TEACHER'){
+                $tutorial = $tutorialsRepository->findAllTutorialsWithAuthorEmail($this->getUser()->getEmail());
+            }else{
+                $tutorial = $tutorialsRepository->findAll();
+            }
         }
         return $this->render('admin_mode/tutorials/index.html.twig', [
             'tutorials' => $tutorial,
@@ -77,11 +85,39 @@ class TutorialsController extends AbstractController
             return $a->getStepOrder() <=> $b->getStepOrder();
         });
 
+
+        $description = $this->removeFormatIndicateur($tutorial->getDescription());
+        $tutorial->setDescription($description);
+        
+
         return $this->render('admin_mode/tutorials/show.html.twig', [
             'tutorial' => $tutorial,
             'chapters' => $chapters,
             'contents' => $contents,
         ]);
+    }
+    private function removeFormatIndicateur(string $description): string
+    {
+        $description = preg_replace('/^### (.*)$/m', '$1', $description);
+        
+        $description = preg_replace('/^#### (.*)$/m', '$1', $description);
+
+        $description = preg_replace('/\*\*(.*?)\*\*/', '$1', $description);
+
+        $description = preg_replace('/~~/', '', $description);
+
+        $description = preg_replace('/♠/', '', $description);
+
+
+        $description = preg_replace('/♣/', '', $description);
+
+        $description = preg_replace('/♥/', '', $description);
+
+        $description = preg_replace('/♦/', '', $description);
+
+        $description = nl2br($description);
+
+        return $description;
     }
 
     #[Route('/{id}/edit', name: 'app_tutorials_edit', methods: ['GET', 'POST'])]

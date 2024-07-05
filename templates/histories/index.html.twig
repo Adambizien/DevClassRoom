@@ -1,39 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Histories index{% endblock %}
+{% block title %}Historique{% endblock %}
 
 {% block body %}
-    <h1>Histories index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Progression</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for history in histories %}
-            <tr>
-                <td>{{ history.id }}</td>
-                <td>{{ history.createdAt ? history.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ history.updatedAt ? history.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ history.progression }}</td>
-                <td>
-                    <a href="{{ path('app_histories_show', {'id': history.id}) }}">show</a>
-                    <a href="{{ path('app_histories_edit', {'id': history.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container mx-auto p-4 flex justify-center mt-10">
+        <div class=" bg-[#95ABF6] shadow-md rounded-lg p-6 w-full max-w-3xl mx-auto {{ histories|length > 0 ? '' : 'h-56' }}">
+                <h1 class="text-3xl font-bold mb-10 flex">
+                    Historique 
+                    {% if histories|length > 0 %}
+                        <a href="{{ path('app_histories_removeAll') }}">
+                            <svg class="w-7 h-7 mt-1 text-red-500 hover:text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 22 22">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                            </svg>
+                        </a>
+                    {% endif %}
+                </h1>
+                
+                <div class="space-y-4">
+                    {% if histories|length > 0  %}
+                            {% for history in histories %}
+                            <div class="flex">
+                                <a href="{{ path('app_formation_show', {'id': history.tutorials.id}) }}" class="flex-1">
+                                    <div class="flex items-center bg-gray-100 shadow-md rounded-l-lg p-4 mt-3 h-full">
+                                        <img src="{{ vich_uploader_asset(history.tutorials, 'imageFile') }}" alt="" class="w-16 h-16 rounded mr-4">
+                                        <div class="flex-1">
+                                            <h2 class="text-xl font-semibold break-all line-clamp-1">{{ history.tutorials.title }}</h2>
+                                            <p class="text-gray-600 line-clamp-2 break-all">
+                                                {{ history.tutorials.description | raw }}
+                                            </p>
+                                            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2 relative">
+                                                <div class="bg-[#FF7568] h-2.5 rounded-full overflow-hidden" style="width: {{ porgression[loop.index - 1] }}%"></div>
+                                                <span class="absolute right-0 text-sm text-gray-700 mt-1" style="top : -10px;">{{ porgression[loop.index - 1]|round(0, 'floor') }}%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{{ path('app_histories_remove', {'historieId': history.id}) }}">
+                                    <div class=" flex items-center bg-[#FF7568] hover:bg-gray-500 shadow-md rounded-r-lg p-4 mt-3 h-full justify-center">
+                                        <svg class="w-7 h-7 mt-1 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 22 22">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                                
+                            </div>
+                            {% endfor %}
+                    {% else %}
+                        <div class="flex items-center bg-gray-100 shadow-md rounded-lg p-4 mt-3">
+                            <div class="flex-1">
+                                <h2 class="text-xl font-semibold">Aucun historique</h2>
+                                <p class="text-gray-600">
+                                    Vous n'avez pas encore suivi de formation.
+                                </p>
+                            </div>
+                        </div>
+                    
+                    {% endif %}
 
-    <a href="{{ path('app_histories_new') }}">Create new</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 {% endblock %}

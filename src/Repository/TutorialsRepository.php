@@ -92,6 +92,33 @@ class TutorialsRepository extends ServiceEntityRepository
                 ->getResult();
     }  
 
+    public function get3LastTutorialswithStatusOnAndWithImageName(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.status = :status')
+            ->setParameter('status', 'on')
+            ->andWhere('t.imageName IS NOT NULL')
+            ->orderBy('t.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function searchTutorial($title,$auteur): array
+    {
+        $query = $this->createQueryBuilder('t');
+        if($title){
+            $query->andWhere('t.title = :title')
+                ->setParameter('title', $title);
+        }
+        if($auteur){
+            $query->andWhere('t.author = :auteur')
+                ->setParameter('auteur', $auteur);
+        }
+        return $query->getQuery()->getResult();
+    }
+        
+
 
 
 //    public function findOneBySomeField($value): ?Tutorials

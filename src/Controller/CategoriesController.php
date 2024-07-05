@@ -15,10 +15,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class CategoriesController extends AbstractController
 {
     #[Route('/', name: 'app_categories_index', methods: ['GET'])]
-    public function index(CategoriesRepository $categoriesRepository): Response
+    public function index(Request $request,CategoriesRepository $categoriesRepository): Response
     {
+        if($request->query->get('name')){
+            $categories = $categoriesRepository->searchCategory($request->query->get('name'));
+        }else{
+            $categories = $categoriesRepository->findAll();
+        }
         return $this->render('admin_mode/categories/index.html.twig', [
-            'categories' => $categoriesRepository->findAll(),
+            'categories' => $categories,
         ]);
     }
 

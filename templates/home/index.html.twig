@@ -1,21 +1,101 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}DevClassRoom{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-{# {{dump(app.user.role)}} #}
 
-<div class="example-wrapper">
-   
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/var/www/html/DevClassRoom/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/var/www/html/DevClassRoom/templates/home/index.html.twig</code></li>
-    </ul>
+<section class="bg-gray-100">
+    <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <div class="mr-auto place-self-center lg:col-span-7">
+            <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">Apprenez vite sur <span style="color: #4748EE">DevClassRoom</span></h1>
+            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">Développez vos compétences et maîtrisez votre potentiel avec DevClassRoom.</p>
+            {% if app.user is empty %}
+                <a href="{{ path('app_register') }}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#FF7568] hover:bg-gray-500">
+                    Inscription
+                </a>
+            {% else %} 
+                <a href="{{ path('app_formation') }}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#FF7568] hover:bg-gray-500">
+                    Formation
+                </a>
+            {% endif %}
+        </div>
+        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+            <img src="{{ asset('svg/Home1.svg') }}" alt="Home Icon">
+        </div>                
+    </div>
+</section>
+<section class="bg-white">
+    <div class="grid max-w-screen-xl   mx-auto gap-6 grid-cols-5 ">
+        <div class="col-span-2 flex items-center">
+            <img src="{{ asset('svg/Home2.svg') }}" alt="Home Icon">
+        </div>    
+        <div class="mr-auto place-self-center col-span-3">
+            <h2 class="max-w-2xl mb-4 text-2xl font-extrabold tracking-tight leading-none text-gray-500">Notre objectif est simple :</h2>
+            <p class="max-w-2xl font-light text-gray-500 mb-8 text-lg">Fournir à chaque développeur, débutant ou expert, des tutoriels de développement de qualité, favorisant ainsi l'apprentissage collaboratif et l'épanouissement professionnel dans un environnement convivial et interact.</p>
+            <a href="#" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#4748EE] hover:bg-blue-900">
+                Lire plus
+            </a>
+        </div>               
+    </div>
+</section>
+<section class="bg-white">
+    <div class="grid max-w-screen-xl pl-11  mx-auto gap-6 grid-cols-5 w-full">
+        <div class="mr-auto place-self-center col-span-3">
+            <h2 class="max-w-2xl mb-4 text-2xl font-extrabold tracking-tight leading-none text-gray-500">Notre rôle :</h2>
+            <p class="max-w-2xl font-light text-gray-500 mb-8 text-lg">Offrir des formation complète avec des tutoriels de haute qualité couvrant une multitude de langages et d'outils de développement. Nos fonctionnalités interactives encouragent l'engagement au sein d'une communauté active et nos mises à jour régulières assurent un contenu toujours actuel. Avec une navigation intuitive et une accessibilité multiplateforme, vous pouvez personnaliser votre expérience d'apprentissage selon vos besoins, que vous soyez débutant ou expert en développement informatique.</p>
+            <a href="#" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#4748EE] hover:bg-blue-900">
+                Lire plus
+            </a>
+        </div>
+        <div class="col-span-2 flex items-center">
+            <img src="{{ asset('svg/Home3.svg') }}" alt="Home Icon">
+        </div>             
+    </div>
+</section>
+<h2 class="text-center w-full my-10 text-2xl font-extrabold tracking-tight leading-none text-gray-500"> Nos derniers formations </h2>
+<section class="bg-white">
+    <div class="grid max-w-screen-xl px-6  mx-auto gap-6 grid-cols-3 w-full">
+        {% for tutorial in tutorials %}
+            <div class=" flex flex-col ">
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden ">
+                    <div class="relative ">
+                        <div class="absolute bottom-2 left-2">
+                            {% for category in tutorial.categories %}
+                                {% if category.status == 'on' %}
+                                    <span class="bg-[#4748EE] text-white text-xs font-medium px-2.5 py-0.5 rounded border border-[#4748EE] ">{{ category.name }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% if vich_uploader_asset(tutorial, 'imageFile') %}
+                            <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}">
+                                <img src="{{ vich_uploader_asset(tutorial, 'imageFile') }}" alt="" class="w-full h-48 object-cover">
+                            </a>
+                        {% else %}
+                            <a herf="{{ path('app_formation_show',{'id': tutorial.id }) }}" >
+                                <div class="bg-gray-300 h-48 rounded-t-lg object-cover"></div>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="p-5">
+                        <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}">
+                            <h5 class="mb-2 text-xl font-bold text-gray-900 overflow-hidden whitespace-nowrap overflow-ellipsis">{{ tutorial.title }}</h5>
+                        </a>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Auteur : {{ tutorial.author }}</p>
+                        <div class="flex justify-between items-center">
+                            <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-[#4748EE] rounded-lg">
+                                Lire la suite
+                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                </svg>
+                            </a>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">{{ tutorial.updatedAt|date('d/m/Y') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
 
-</div>
+
 {% endblock %}

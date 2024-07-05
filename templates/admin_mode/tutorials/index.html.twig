@@ -10,9 +10,20 @@
 
     <div class="flex-1 p-10">
         <h1 class="text-3xl font-bold mb-5">Tutoriels</h1>
-        <a href="{{ path('app_tutorials_new') }}" class="inline-flex items-center mb-3 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white  bg-[#4748EE]">
-            Ajouter un tutoriel
-        </a>
+        <div class="flex w-full justify-between">
+            <form action="{{ path('app_tutorials_index') }}" method="GET" class="flex space-x-4 mb-3">
+                <input type="text" name="title" placeholder="Titre" class="px-3 py-2 border rounded" value="{{ app.request.query.get('title') }}">
+             
+                {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                    <input type="text" name="author" placeholder="Auteur" class="px-3 py-2 border rounded" value="{{ app.request.query.get('author') }}">
+                {% endif %}
+                <button type="submit" class="px-4 py-2 text-white rounded" style="background-color: #4748EE">Rechercher</button>
+            </form>
+            <a href="{{ path('app_tutorials_new') }}" class="inline-flex items-center mb-3 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#4748EE]">
+                Ajouter un tutoriel
+            </a>
+        </div>
+        
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 ">
                 <thead class="text-xs text-gray-700 uppercase bg-[#FF7568]">

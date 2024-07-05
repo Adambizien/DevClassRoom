@@ -49,7 +49,7 @@
                             <h5 class="mb-2 text-2xl font-bold text-gray-900 overflow-hidden whitespace-nowrap overflow-ellipsis">{{ tutorial.title }}</h5>
                         </a>
                         <div class="mb-3">
-                            <p class="text-gray-700 leading-normal h-12 overflow-hidden break-words">{{ tutorial.description }}</p>
+                            <p class="text-gray-700 leading-normal h-12 overflow-hidden break-words">{{ tutorial.description | raw }}</p>
                             {% if tutorial.description|length > 90 %}
                                 <p class="text-gray-700 leading-normal text-sm mt-1">...</p>
                             {% endif %}

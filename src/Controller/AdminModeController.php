@@ -14,10 +14,17 @@ use Doctrine\ORM\EntityManagerInterface;
 class AdminModeController extends AbstractController
 {
     #[Route('/UserTable', name: 'app_admin_mode_user')]
-    public function userTable(UserRepository $userRepository): Response
-    {
-        $users = $userRepository->getAllUsers();
-
+    public function userTable(Request $request, UserRepository $userRepository): Response
+    {   
+        $firstname = $request->query->get('firstname');
+        $name = $request->query->get('name');
+        $email = $request->query->get('email');
+        $role = $request->query->get('role');
+        if( $firstname || $email || $name || $role ){
+            $users = $userRepository->searchUsers($firstname, $name, $email, $role);
+        }else{
+            $users = $userRepository->getAllUsers();
+        }
 
         return $this->render('admin_mode/user/user.html.twig', [
             'users' => $users,

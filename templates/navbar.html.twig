@@ -50,6 +50,12 @@
                             Profil
                         </a>
                     </li>
+                     <li>
+                        <a href="{{ path('app_histories_index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  
+                            {{ app.request.attributes.get('_route') == 'app_histories_index' ? 'bg-gray-100 ' : ''  }}">
+                            Historique
+                        </a>
+                    </li>
                     
                     {% if app.user.roles[0]== "ROLE_ADMIN"  %}
                         <li>

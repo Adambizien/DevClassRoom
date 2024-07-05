@@ -10,6 +10,21 @@
 
     <div class="flex-1 p-10">
         <h1 class="text-3xl font-bold mb-5">Utilisateur</h1>
+        <form action="{{ path('app_admin_mode_user') }}" method="GET" class="mb-5">
+            <div class="flex space-x-4">
+                <input type="text" name="firstname" placeholder="Prénom" class="px-3 py-2 border rounded" value="{{ app.request.query.get('firstname') }}">
+                <input type="text" name="name" placeholder="Nom" class="px-3 py-2 border rounded" value="{{ app.request.query.get('name') }}">
+                <input type="email" name="email" placeholder="Email" class="px-3 py-2 border rounded" value="{{ app.request.query.get('email') }}">
+                <select name="role" class="px-3 py-2 border rounded">
+                    <option value="">Tous les rôles</option>
+                    <option value="ROLE_AWAITING_VALIDATION" {{ app.request.query.get('role') =='ROLE_AWAITING_VALIDATION' ? 'selected' : '' }}>Formateur en attente</option>
+                    <option value="ROLE_TEACHER"  {{ app.request.query.get('role') =='ROLE_TEACHER' ? 'selected' : '' }}>Formateur</option>
+                    <option value="ROLE_ADMIN"  {{ app.request.query.get('role') =='ROLE_ADMIN' ? 'selected' : '' }}>Administrateur</option>
+                    <option value="ROLE_USER" {{ app.request.query.get('role') =='ROLE_USER' ? 'selected' : '' }}>Utilisateur</option>
+                </select>
+                <button type="submit" class="px-4 py-2  text-white rounded" style="background-color: #4748EE">Rechercher</button>
+            </div>
+        </form>
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 ">
                 <thead class="text-xs text-gray-700 uppercase bg-[#FF7568]">

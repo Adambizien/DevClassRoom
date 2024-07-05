@@ -37,18 +37,21 @@
         <li class="relative w-full mb-2">
             <div class="flex items-center">
                 <a href="{{ path('app_formation_show',{'id': tutorial.id }) }}">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 {{ introduction ? 'bg-[#FF7568]'  : 'bg-gray-200'  }} rounded-full ring-0 ring-white sm:ring-8 shrink-0" data-popover-target="popover-intro" data-popover-placement="bottom">
-                        {# <svg class="w-5 h-5 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                        </svg> #}
+                    <div class="z-10 flex items-center justify-center w-10 h-10 {{ introduction or -1 in progression ? 'bg-[#FF7568]'  : 'bg-gray-200'  }} rounded-full ring-0 ring-white sm:ring-8 shrink-0" data-popover-target="popover-intro" data-popover-placement="bottom">
                         {% if introduction %}
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
                                 <circle cx="8" cy="8" r="8"/>
                             </svg>
                         {% else %}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                            </svg>
+                            {% if -1 in progression  %}
+                                <svg class="w-5 h-5 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                                </svg>
+                            {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                </svg>
+                            {% endif %}  
                         {% endif %}
                     </div>
                 </a>
@@ -66,18 +69,21 @@
             <li class="relative w-full mb-2">
                 <div class="flex items-center">
                     <a href="{{ path('app_formation_chapter_show',{'id': tutorial.id,'chapterId': chapter.id }) }}">
-                        <div class="z-10 flex items-center justify-center w-10 h-10 {{ currentchapter is defined and currentchapter.id == chapter.id ? 'bg-[#FF7568]' : 'bg-gray-200' }}  rounded-full ring-0 ring-white sm:ring-8 shrink-0" data-popover-target="popover-{{ chapter.id }}" data-popover-placement="bottom">
-                            {# <svg class="w-5 h-5 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                            </svg> #}
+                        <div class="z-10 flex items-center justify-center w-10 h-10 {{ currentchapter is defined and currentchapter.id == chapter.id or chapter.id in progression ? 'bg-[#FF7568]' : 'bg-gray-200' }}  rounded-full ring-0 ring-white sm:ring-8 shrink-0" data-popover-target="popover-{{ chapter.id }}" data-popover-placement="bottom">
                             {% if  currentchapter is defined and currentchapter.id == chapter.id %}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8"/>
                                 </svg>
                             {% else %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                </svg>
+                                {% if chapter.id in progression  %}
+                                    <svg class="w-5 h-5 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                                    </svg>
+                                {% else %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    </svg>
+                                {% endif %}
                             {% endif %}
                         </div>
                     </a>

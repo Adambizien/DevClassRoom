@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Form\FormationType;
 use App\Repository\ChapterRepository;
 use App\Repository\ContentRepository;
+use App\Repository\HistoriesRepository;
 use App\Repository\TutorialsRepository;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,6 +34,10 @@ class FormationController extends AbstractController
         }else{
             $tutorials = $tutorialsRepository->findAllTutorialsWithStastusOn();
         }
+        foreach ($tutorials as $tutorial) {
+            $description = $this->removeFormatIndicateur($tutorial->getDescription());
+            $tutorial->setDescription($description);
+        }
 
         return $this->render('formation/index.html.twig', [
             'tutorials' => $tutorials,
@@ -40,7 +46,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/{id}/finish', name: 'app_formation_finish')]
-    public function finish($id,TutorialsRepository $tutorialsRepository,ChapterRepository $chapterRepository): Response
+    public function finish($id,TutorialsRepository $tutorialsRepository,ChapterRepository $chapterRepository,HistoriesRepository $historiesRepository): Response
     {
         $tutorial = $tutorialsRepository->findTutorialById($id);
         if(!$tutorial || $tutorial->getStatus() !== 'on'){
@@ -55,7 +61,7 @@ class FormationController extends AbstractController
                 break;
             }
         }
-
+        $histories = $historiesRepository->getHistoriesByUserIdAndTutorialId($this->getUser()->getId(),$id);
         return $this->render('formation/show.html.twig',[
             'tutorialId' => $id,
             'tutorial' => $tutorial,
@@ -63,11 +69,12 @@ class FormationController extends AbstractController
             'introduction' => false,
             'lastchapter' => $lastchapter,
             'finish'=> true,
+            'progression' => $histories ? $histories[0]->getProgression() : [],
         ]);
     }
 
     #[Route('/{id}', name: 'app_formation_show', methods: ['GET'])]
-    public function show($id,TutorialsRepository $tutorialsRepository,ChapterRepository $chapterRepository): Response
+    public function show($id,TutorialsRepository $tutorialsRepository,ChapterRepository $chapterRepository,HistoriesRepository $historiesRepository): Response
     {
         $tutorial = $tutorialsRepository->findTutorialById($id);
         if(!$tutorial || $tutorial->getStatus() !== 'on'){
@@ -84,7 +91,10 @@ class FormationController extends AbstractController
                 break;
             }
         }
-
+        $histories = null;
+        if($this->getUser() !== null){
+            $histories = $historiesRepository->getHistoriesByUserIdAndTutorialId($this->getUser()->getId(),$id); 
+        }   
 
 
         return $this->render('formation/show.html.twig', [
@@ -93,7 +103,32 @@ class FormationController extends AbstractController
             'introduction' => true,
             'description' => $formattedDescription,
             'chapterOne' => $chapterOne,
+            'progression' => $histories ? $histories[0]->getProgression() : [],
         ]);
+    }
+
+    private function removeFormatIndicateur(string $description): string
+    {
+        $description = preg_replace('/^### (.*)$/m', '$1', $description);
+        
+        $description = preg_replace('/^#### (.*)$/m', '$1', $description);
+
+        $description = preg_replace('/\*\*(.*?)\*\*/', '$1', $description);
+
+        $description = preg_replace('/~~/', '', $description);
+
+        $description = preg_replace('/♠/', '', $description);
+
+
+        $description = preg_replace('/♣/', '', $description);
+
+        $description = preg_replace('/♥/', '', $description);
+
+        $description = preg_replace('/♦/', '', $description);
+
+        $description = nl2br($description);
+
+        return $description;
     }
   
     private function formatDescription(string $description): string
@@ -134,7 +169,7 @@ class FormationController extends AbstractController
 
 
     #[Route('/{id}/chapter/{chapterId}', name: 'app_formation_chapter_show', methods: ['GET'])]
-    public function showChapter($id,$chapterId,TutorialsRepository $tutorialsRepository,ChapterRepository $chapterRepository,ContentRepository $contentRepository): Response
+    public function showChapter($id,$chapterId,TutorialsRepository $tutorialsRepository,ChapterRepository $chapterRepository,ContentRepository $contentRepository ,HistoriesRepository $historiesRepository): Response
     {
         $tutorial = $tutorialsRepository->findTutorialById($id);
         if(!$tutorial || $tutorial->getStatus() !== 'on'){
@@ -168,7 +203,7 @@ class FormationController extends AbstractController
                 $previousChapterId = $value->getId();
             }
         }
-
+        $histories = $historiesRepository->getHistoriesByUserIdAndTutorialId($this->getUser()->getId(),$id);
         return $this->render('formation/show.html.twig', [
             'tutorial' => $tutorial,
             'currentchapter' => $chapter,
@@ -177,6 +212,7 @@ class FormationController extends AbstractController
             'chapters' => $chapters,
             'nextChapterId' => $nextChapterId,
             'previousChapterId' => $previousChapterId,
+            'progression' => $histories ? $histories[0]->getProgression() : [],
         ]);
     }
 

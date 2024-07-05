@@ -10,7 +10,7 @@
         {{ description | raw}}
     </p>
     {% if chapterOne is not null %}
-        <div class="mt-10 flex justify-end">
+         <div class="mt-10 flex justify-end">
             <a  href="{{ path('app_formation_chapter_show',{'id': tutorial.id,'chapterId': chapterOne.id }) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex"  style="background-color:#4748EE">
                 <span class="mr-1">Suivant</span> 
                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -18,6 +18,14 @@
                 </svg>
             </a>
         </div>
+        {% if app.user is not null %}
+            <div class="mt-10 flex justify-center">
+                <a  href="{{ path('app_histories',{'id': tutorial.id,'currentChapterId':-1,'chapterId': chapterOne.id }) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex"  style="background-color:#4748EE">
+                    <span class="mr-1"> Confimer que ce chapitre est terminé</span>
+                </a>
+            </div>
+        {% endif %}
+        
     {% else %}
         <div class="mt-10 flex justify-end">
             <a  href="{{ path('app_formation_finish',{'id': tutorial.id}) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex"  style="background-color:#4748EE">
@@ -27,6 +35,15 @@
                 </svg>
             </a>
         </div>
+        {% if app.user is not null %}
+            <div class="mt-10 flex justify-center">
+                <a  href="{{ path('app_histories',{'id': tutorial.id,'currentChapterId':-1,'chapterId': -2 }) }}" class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex"  style="background-color:#4748EE">
+                    <span class="mr-1"> Confimer que ce chapitre est terminé</span>
+                    
+                </a>
+            </div>
+        {% endif %}
+         
     {% endif %}
 
 </div>

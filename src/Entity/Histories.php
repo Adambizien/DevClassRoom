@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\HistoriesRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HistoriesRepository::class)]
@@ -19,14 +20,15 @@ class Histories
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column]
-    private ?int $progression = null;
 
     #[ORM\ManyToOne(inversedBy: 'histories')]
     private ?User $users = null;
 
     #[ORM\ManyToOne(inversedBy: 'histories')]
     private ?Tutorials $tutorials = null;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private ?array $progression = null;
 
     public function getId(): ?int
     {
@@ -57,17 +59,7 @@ class Histories
         return $this;
     }
 
-    public function getProgression(): ?int
-    {
-        return $this->progression;
-    }
-
-    public function setProgression(int $progression): static
-    {
-        $this->progression = $progression;
-
-        return $this;
-    }
+    
 
     public function getUsers(): ?User
     {
@@ -89,6 +81,18 @@ class Histories
     public function setTutorials(?Tutorials $tutorials): static
     {
         $this->tutorials = $tutorials;
+
+        return $this;
+    }
+
+    public function getProgression(): ?array
+    {
+        return $this->progression;
+    }
+
+    public function setProgression(?array $progression): static
+    {
+        $this->progression = $progression;
 
         return $this;
     }
