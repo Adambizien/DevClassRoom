@@ -14,7 +14,7 @@
             <div class="flex space-x-4">
                 <input type="text" name="firstname" placeholder="Prénom" class="px-3 py-2 border rounded" value="{{ app.request.query.get('firstname') }}">
                 <input type="text" name="name" placeholder="Nom" class="px-3 py-2 border rounded" value="{{ app.request.query.get('name') }}">
-                <input type="email" name="email" placeholder="Email" class="px-3 py-2 border rounded" value="{{ app.request.query.get('email') }}">
+                <input type="text" name="email" placeholder="Email" class="px-3 py-2 border rounded" value="{{ app.request.query.get('email') }}">
                 <select name="role" class="px-3 py-2 border rounded">
                     <option value="">Tous les rôles</option>
                     <option value="ROLE_AWAITING_VALIDATION" {{ app.request.query.get('role') =='ROLE_AWAITING_VALIDATION' ? 'selected' : '' }}>Formateur en attente</option>
@@ -77,6 +77,11 @@
                                 </a>
                             </td>
                         </tr>
+                    {% else %}
+                        <tr class="bg-white border-b text-center">
+                            <td colspan="9" class="py-4 px-4">Aucun utilisateur trouvé</td>
+                        </tr>
+
                     {% endfor %}
                 </tbody>
             </table>

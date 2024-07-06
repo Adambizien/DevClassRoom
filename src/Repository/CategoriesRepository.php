@@ -19,8 +19,8 @@ class CategoriesRepository extends ServiceEntityRepository
     public function searchCategory($category): array
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.name = :category')
-            ->setParameter('category', $category)
+            ->andWhere('c.name LIKE :category')
+            ->setParameter('category', '%'.$category.'%')
             ->getQuery()
             ->getResult();
     }

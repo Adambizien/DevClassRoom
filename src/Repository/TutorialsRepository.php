@@ -104,17 +104,20 @@ class TutorialsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function searchTutorial($title,$auteur): array
+    public function searchTutorial($title, $auteur): array
     {
         $query = $this->createQueryBuilder('t');
+        
         if($title){
-            $query->andWhere('t.title = :title')
-                ->setParameter('title', $title);
+            $query->andWhere('t.title LIKE :title')
+                ->setParameter('title', '%'.$title.'%');
         }
+        
         if($auteur){
-            $query->andWhere('t.author = :auteur')
-                ->setParameter('auteur', $auteur);
+            $query->andWhere('t.author LIKE :auteur')
+                ->setParameter('auteur', '%'.$auteur.'%');
         }
+        
         return $query->getQuery()->getResult();
     }
         
