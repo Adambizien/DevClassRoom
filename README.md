@@ -109,8 +109,11 @@ Conception site d'apprentissage de développement avec des tutoriels.
 Étape 12 (branche : [historiqueInterface](https://github.com/Adambizien/DevClassRoom/tree/historiqueInterface) ) : <br>    
   - Implémenter l'interface d'historique  : [ici](https://github.com/Adambizien/DevClassRoom/commit/d5abf3b26330efebe15873c6999fdbc6a1d037a7) <br>
 
-Étape 13 (branche : [legalInterface]() ) : <br>    
-  - Implémenter l'interface Légal  : [ici]() <br>
+Étape 13 (branche : [legalInterface](https://github.com/Adambizien/DevClassRoom/commits/LegalInterface/) ) : <br>    
+  - Implémenter l'interface Légal  : [ici](https://github.com/Adambizien/DevClassRoom/commit/980117a664b32c6424f77f29f9e3992adfc99d29) <br>
+
+Étape 14 (branche : [WhoWeAreInterface]() ) : <br>    
+  - Implémenter l'interface Qui sommes-nous : [ici]() <br>
       
 
     
