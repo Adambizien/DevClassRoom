@@ -53,7 +53,7 @@
             <div class="mb-5 flex items-center">
                 {{ form_widget(registrationForm.agreeTerms,{'attr':{'class':'w-4 h-4  bg-gray-100 border-gray-300 rounded focus:ring-purple-500  focus:ring-2','style':'color:#4748EE'}}) }}
                 <label for="registrationForm_agreeTerms" class="ms-2 text-sm font-medium text-gray-900 ">
-                    J'accepte les <a href="#" class="text-blue-600  hover:underline">conditions générales</a>
+                    J'accepte les <a href="{{ path('app_gcu') }}" class="text-blue-600  hover:underline">conditions générales</a>
                 </label>
             </div>
 
