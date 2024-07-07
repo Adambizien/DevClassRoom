@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui Sommes-nous ?{% endblock %}
+
+{% block body %}
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold leading-tight text-gray-900 ml-10">Qui Sommes-nous ?</h1>
+    
+        <section class="my-8">
+            <div class="flex flex-col lg:flex-row items-center my-4">
+                <div class=" p-4" style="width : 36%; height: 36% ">
+                    <img src="{{ asset('svg/whoWeAre1.svg') }}" alt="Home Icon">
+                </div>
+                <div class="w-1/2 p-4 mx-auto">
+                    <h2 class="text-2xl font-bold mb-4">Histoire de DevClassRoom.fr</h2>
+                    <p class="mb-2">Dans un monde numérique en constante évolution, l’apprentissage et le partage de
+                        connaissances jouent un rôle essentiel. C'est dans cet esprit que DevClassRoom.fr voit le jour,
+                        une plateforme dédiée aux passionnés de développement et d’apprentissage continu.</p>
+                    <p class="mb-2">L’idée a germé de Bizien Adam, passionné de développement, qui s’est retrouvé autour
+                        d’un constat : malgré la richesse des ressources disponibles en ligne, il manquait un espace
+                        convivial et interactif dédié spécifiquement au partage de tutoriels en développement
+                        informatique. C'est ainsi qu’est né le projet DevClassRoom, avec pour mission de rassembler une
+                        communauté dynamique et enthousiaste autour de l’apprentissage et du partage de connaissances.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-8">
+            <div class="flex flex-col lg:flex-row items-center my-4">
+                <div class="w-1/2 order-last lg:order-first p-4">
+                    <h2 class="text-2xl font-bold mb-4">Notre mission</h2>
+                    <p class="mb-2">La mission globale de DevClassRoom.fr est de créer un environnement en ligne
+                        dynamique et inclusif, favorisant l’apprentissage continu et le partage de connaissances dans le
+                        domaine du développement. Nous aspirons à devenir la référence en matière de tutoriels de
+                        développement en ligne, en offrant un contenu de qualité, attractif et accessible à tous les
+                        niveaux de compétences, tout en proposant une interface de qualité pour partager ces
+                        connaissances.</p>
+                </div>
+                <div class="p-4 mx-auto"  style="width : 36%; height: 36% ">
+                     <img src="{{ asset('svg/whoWeAre2.svg') }}" alt="Home Icon">
+                </div>
+            </div>
+        </section>
+
+        <section class="my-8">
+            <div class="flex flex-col lg:flex-row items-center my-4">
+                 <div class="p-4 mx-auto"  style="width : 36%; height: 36% ">
+                     <img src="{{ asset('svg/whoWeAre3.svg') }}" alt="Home Icon">
+                </div>
+                <div class="w-1/2 p-4 mx-auto">
+                    <h2 class="text-2xl font-bold mb-4">Nos objectifs stratégiques</h2>
+                    <ul class="list-disc list-inside mb-2">
+                        <li class="mb-2"><strong>Fournir un contenu de qualité</strong> : Nous nous engageons à publier des tutoriels
+                            approfondis, précis et actuels, répondant aux besoins et aux intérêts de notre public cible.</li>
+                        <li class="mb-2"><strong>Promouvoir l’interactivité et l’engagement</strong> : Nous cherchons à créer une
+                            communauté active et engagée, encourageant les interactions entre les membres.</li>
+                        <li class="mb-2"><strong>Favoriser l’accessibilité</strong> : Nous diversifions les formats de publication pour répondre
+                            aux préférences individuelles des utilisateurs et prenons en compte les besoins spécifiques des différents
+                            niveaux de compétences.</li>
+                        <li class="mb-2"><strong>Maintenir une ligne éditoriale cohérente</strong> : Nous veillons à ce que notre contenu soit
+                            concis, attractif, informatif et favorise la participation et l’interaction.</li>
+                        <li class="mb-2"><strong>Assurer une visibilité optimale</strong> : Nous mettons en œuvre des stratégies de
+                            référencement efficaces pour maximiser notre présence en ligne.</li>
+                        <li class="mb-2"><strong>Respecter les normes légales et éthiques</strong> : Nous nous conformons aux normes en
+                            vigueur, notamment en matière de protection des données et de transparence.</li>
+                        <li class="mb-2"><strong>Engagement sur les réseaux sociaux</strong> : Nous maintenons une présence active sur les
+                            réseaux sociaux, publiant régulièrement du contenu en accord avec notre charte éditoriale pour promouvoir
+                            notre contenu et interagir avec notre communauté.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-8">
+            <div class="flex flex-col lg:flex-row items-center my-4">
+                <div class="w-1/2 order-last lg:order-first p-4">
+                    <h2 class="text-2xl font-bold mb-4">Nos valeurs</h2>
+                    <ul class="list-disc list-inside mb-2">
+                        <li class="mb-2"><strong>Partage de connaissances</strong> : Encourager la diffusion et le partage de
+                            connaissances dans le domaine du développement.</li>
+                        <li class="mb-2"><strong>Apprentissage continu</strong> : Promouvoir l’idée d’un apprentissage continu et accessible
+                            à tous les niveaux.</li>
+                        <li class="mb-2"><strong>Collaboration et entraide</strong> : Favoriser la collaboration et l’entraide entre les
+                            membres de la communauté.</li>
+                        <li class="mb-2"><strong>Innovation technologique</strong> : Explorer les dernières tendances et innovations dans le
+                            domaine du développement.</li>
+                        <li class="mb-2"><strong>Success stories</strong> : Mettre en lumière les réussites et les réalisations des membres de
+                            la communauté DevClassRoom.</li>
+                        <li class="mb-2"><strong>Actualités du secteur</strong> : Partager des actualités et des événements pertinents dans le
+                            domaine du développement.</li>
+                    </ul>
+                </div>
+                <div class="p-4 mx-auto"  style="width : 36%; height: 36% ">
+                     <img src="{{ asset('svg/whoWeAre4.svg') }}" alt="Home Icon">
+                </div>
+            </div>
+        </section>
+
+        <section class="my-8">
+            <div class="flex flex-col lg:flex-row items-center my-4">
+                 <div class="p-4 mx-auto"  style="width : 36%; height: 36% ">
+                     <img src="{{ asset('svg/whoWeAre5.svg') }}" alt="Home Icon">
+                </div>
+                <div class="w-1/2 p-4 mx-auto">
+                    <h2 class="text-2xl font-bold mb-4">Nos supports de communication</h2>
+                    <ul class="list-disc list-inside mb-2">
+                        <li class="mb-2"><strong>Site Web</strong> : La plateforme centralisée pour présenter des tutoriels, des ressources
+                            éducatives et des informations sur la communauté.</li>
+                        <li class="mb-2"><strong>Réseaux sociaux</strong> : Utilisation de Twitter, LinkedIn et TikTok pour une
+                            communication instantanée et le partage de contenu avec une large audience.</li>
+                        <li class="mb-2"><strong>Partenariats</strong> : Collaboration avec d’autres organisations, blogs ou influenceurs
+                            pour étendre notre portée et attirer de nouveaux membres.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
