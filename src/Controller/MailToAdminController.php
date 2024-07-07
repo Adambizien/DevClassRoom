@@ -9,7 +9,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class MailToAdminController extends AbstractController
 {
@@ -32,8 +31,7 @@ class MailToAdminController extends AbstractController
 
             $mailer->send($email);
 
-            $this->addFlash('success', 'Your message has been sent.');
-
+            $this->addFlash('success', 'Votre message a bien été envoyé !');
           
         }
         return $this->render('mail_to_admin/index.html.twig', [
