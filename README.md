@@ -118,8 +118,67 @@ Conception site d'apprentissage de développement avec des tutoriels.
 Étape 15 (branche : [Main](https://github.com/Adambizien/DevClassRoom/commits/main/) ) : <br>    
   - Merge dans la branche Main.
 
+OVH :
+- On crée un sous-domaine DevClassRoom.bizienadam.fr dans la zone DNS de OVH.
+- Si ce n'est pas le cas, installer Symfony : <br>
+  curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash <br>
+  sudo apt install symfony-cli <br>
+  symfony <br>
+  symfony check:requirements <br>
+- git clone https://github.com/Adambizien/DevClassRoom.git dans le var/www/html pour récupérer le projet.
+- Modifier le fichier .env (en mode prod).
+- Change le .env avec les info de la database.
+- Effectuer un composer install.
 
-      
+- php bin/console doctrine:database:create pour créer la base de données.
+- php bin/console doctrine:schema:update --force  pour la migration.
+- sudo ufw status pour vérifier que le port 80 est compris dans le pare-feu (si ce n'est pas déjà fait).
+- Aller dans etc/nginx/sites-available/, puis créer un fichier sudo nano site_DevClassRoom et y ajouter ce qui suit : <br>
+server {<br>
+    listen 80; <br>
+
+
+    server_name Kanban.bizienadam.fr; <br>
+
+    root /var/www/html/NWSKanbanProject/public; <br>
+    index index.php index.html index.htm; <br>
+
+    location / { <br>
+         try_files $uri $uri/ /index.php?$query_string; <br>
+    } <br>
+
+    location ~ \.php$ { <br>
+          include snippets/fastcgi-php.conf; <br>
+      #  <br>
+      #       # With php-fpm (or other unix sockets):  <br>
+          fastcgi_pass unix:/run/php/php-fpm.sock; <br>
+     #       # With php-cgi (or other tcp sockets): <br>
+     #       fastcgi_pass 127.0.0.1:9000; <br>
+     } <br>
+    # Autres configurations peuvent être présentes ici <br>
+} <br>
+
+- Ensuite, on le met dans les sites-enabled avec cette commande  :  <br>
+  sudo ln -s /etc/nginx/sites-available/site_kanban /etc/nginx/sites-enabled/
+- Relancer Nginx avec cette commande : <br>
+  sudo systemctl restart nginx
+- Normalement, cela fonctionne.
+
+- mais il y a des buges de permision :<br>
+  sudo mkdir -p /var/www/html/DevClassRoom/var/cache/dev <br>
+sudo chown -R www-data:www-data /var/www/html/DevClassRoom/var <br>
+sudo chmod -R 775 /var/www/html/DevClassRoom/var <br>
+
+- mais j'ai aussi oublier de metter la webback machine : <br>
+  cd /var/www/html/DevClassRoom <br>
+  npm install <br>
+  npm run build ( pour la prod) <br>
+  
+- et aussi j'ai oublier de mettre dans le .env le MAILER_DSN <br>
+
+
+Débugage de prod : 
+
 
     
 
