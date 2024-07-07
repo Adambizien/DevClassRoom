@@ -114,6 +114,11 @@ Conception site d'apprentissage de développement avec des tutoriels.
 
 Étape 14 (branche : [WhoWeAreInterface](https://github.com/Adambizien/DevClassRoom/commits/WhoWeAreInterface/) ) : <br>    
   - Implémenter l'interface Qui sommes-nous ? : [ici](https://github.com/Adambizien/DevClassRoom/commit/e7c323be8e8740eac6faf9e966fc0d62250cc027) <br>
+
+Étape 15 (branche : [Main](https://github.com/Adambizien/DevClassRoom/commits/main/) ) : <br>    
+  - Merge dans la branche Main.
+
+
       
 
     
