@@ -149,13 +149,9 @@ server {<br>
 
     location ~ \.php$ { <br>
           include snippets/fastcgi-php.conf; <br>
-      #  <br>
-      #       # With php-fpm (or other unix sockets):  <br>
           fastcgi_pass unix:/run/php/php-fpm.sock; <br>
-     #       # With php-cgi (or other tcp sockets): <br>
-     #       fastcgi_pass 127.0.0.1:9000; <br>
      } <br>
-    # Autres configurations peuvent être présentes ici <br>
+
 } <br>
 
 - Ensuite, on le met dans les sites-enabled avec cette commande  :  <br>
