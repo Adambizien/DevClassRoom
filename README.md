@@ -171,6 +171,7 @@ sudo chmod -R 775 /var/www/html/DevClassRoom/var <br>
   npm run build ( pour la prod) <br>
   
 - et aussi j'ai oublier de mettre dans le .env le MAILER_DSN <br>
+- et j'ai aussi oublier les permision pour les images
 
 
 Débugage de prod : 
