@@ -173,10 +173,17 @@ sudo chmod -R 775 /var/www/html/DevClassRoom/var <br>
 - et aussi j'ai oublier de mettre dans le .env le MAILER_DSN <br>
 - et j'ai aussi oublier les permision pour les images
 
-- refaire un php bin/console doctrine:schema:update --force parce que les auto incrémente ne sont pas passer
+- et aussi ouvrire les permision pour les image avec :
+  sudo chown -R www-data:www-data /var/www/html/DevClassRoom/public/images/content/ <br>
+  sudo chmod -R 755 /var/www/html/DevClassRoom/public/images/content/<br>
+  sudo chown -R www-data:www-data /var/www/html/DevClassRoom/public/images/tutorials/ <br>
+  sudo chmod -R 755 /var/www/html/DevClassRoom/public/images/tutorials/ <br>
 
 
 Débugage de prod : 
+- refaire un  "php bin/console doctrine:schema:update --force" en raison d'un bug
+- 
+
 
 
     
