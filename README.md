@@ -182,7 +182,15 @@ sudo chmod -R 775 /var/www/html/DevClassRoom/var <br>
 
 Débugage de prod : 
 - refaire un  "php bin/console doctrine:schema:update --force" en raison d'un bug
-- 
+- Vérifiez les permissions des répertoires de logs et de cache : <br>
+  Assurez-vous que les répertoires var/log et var/cache existent et sont accessibles en écriture par le serveur web. <br>
+  
+  sudo mkdir -p var/log var/cache <br>
+  sudo chown -R www-data:www-data var/log var/cache <br>
+  sudo chmod -R 775 var/log var/cache <br>
+
+- metter APP_ENV=prod
+APP_DEBUG=0 dans le .env .
 
 
 
