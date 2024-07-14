@@ -168,6 +168,11 @@ class TutorialsController extends AbstractController
                 }
                 $entityManager->remove($chapter);
             }
+            $histories = $tutorial->getHistories();
+            foreach ($histories as $history) {
+                $entityManager->remove($history);
+            }
+            
             $entityManager->remove($tutorial);
             $entityManager->flush();
         }

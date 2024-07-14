@@ -14,20 +14,22 @@
                     {{ form_widget(form.search_tutorial_name, {'attr': {'class': 'mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'}}) }}
                     {{ form_errors(form.search_tutorial_name) }}
                 </div>
-                <div class=" items-center w-1/2">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Sélectionnez les catégories</label>
-                    <div class="ml-2 flex flex-wrap">
-                        {% for category in form.categories %}
-                        <div class="mr-4 mb-2">
-                            <div class="flex items-center">
-                                {{ form_widget(category, {'id': 'category_' ~ category.vars.value,'attr': {'class':'w-4 h-4  bg-gray-100 border-gray-300 rounded focus:ring-purple-500  focus:ring-2','style':'color:#4748EE'}}) }}
-                                <label for="category_{{ category.vars.value }}" class="ml-2 block text-sm text-gray-700">{{ category.vars.label }}</label>
+                {% if  form.categories is not empty %}
+                    <div class=" items-center w-1/2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Sélectionnez les catégories</label>
+                        <div class="ml-2 flex flex-wrap">
+                            {% for category in form.categories %}
+                            <div class="mr-4 mb-2">
+                                <div class="flex items-center">
+                                    {{ form_widget(category, {'id': 'category_' ~ category.vars.value,'attr': {'class':'w-4 h-4  bg-gray-100 border-gray-300 rounded focus:ring-purple-500  focus:ring-2','style':'color:#4748EE'}}) }}
+                                    <label for="category_{{ category.vars.value }}" class="ml-2 block text-sm text-gray-700">{{ category.vars.label }}</label>
+                                </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
+                        {{ form_errors(form.categories) }}
                     </div>
-                    {{ form_errors(form.categories) }}
-                </div>
+                {% endif %}
             </div>
 
             <div class="flex justify-start">
@@ -37,8 +39,8 @@
             </div>
         {{ form_end(form) }}
     </div>
-    <div class="container py-8 px-10 flex justify-center items-center w-full ">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 w-10/12 ">
+    <div class="container py-8 px-10 flex justify-center items-center w-full mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 w-10/12">
             {% for tutorial in tutorials %}
                 <div class=" flex flex-col ">
                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden ">

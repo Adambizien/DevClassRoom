@@ -23,7 +23,7 @@ class FormationType extends AbstractType
                 'choice_value' => 'id',
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'Sélectionnez les catégories',
+                'label' => false,
                 'required' => false,
             ])
         ;

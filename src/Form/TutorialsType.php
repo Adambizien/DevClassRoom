@@ -40,6 +40,7 @@ class TutorialsType extends AbstractType
                 'required' => false
             ])
             ->add('categories', EntityType::class, [
+                'label' => false,
                 'class' => Categories::class,
                 'choice_label' => 'name',
                 'multiple' => true,

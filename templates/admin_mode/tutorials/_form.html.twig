@@ -33,17 +33,19 @@
         </div>
     </div>
 
-    <div class="mb-5">
-        <label for="categories" class="block mb-2 text-sm font-medium text-gray-900">Catégories</label>
-        <div id="categories" class="flex flex-wrap">
-            {% for category in form.categories %}
-                <div class="flex items-center ml-2">
-                    {{ form_widget(category, {'attr': {'class':'w-4 h-4  bg-gray-100 border-gray-300 rounded focus:ring-purple-500  focus:ring-2','style':'color:#4748EE'}}) }}
-                    <label for="{{ category.vars.id }}" class="ml-2 text-sm text-gray-900">{{ category.vars.label }}</label>
-                </div>
-            {% endfor %}
+    {% if form.categories is not empty %}
+        <div class="mb-5">
+            <label for="categories" class="block mb-2 text-sm font-medium text-gray-900">Catégories</label>
+            <div id="categories" class="flex flex-wrap">
+                {% for category in form.categories %}
+                    <div class="flex items-center ml-2">
+                        {{ form_widget(category, {'attr': {'class':'w-4 h-4  bg-gray-100 border-gray-300 rounded focus:ring-purple-500  focus:ring-2','style':'color:#4748EE'}}) }}
+                        <label for="{{ category.vars.id }}" class="ml-2 text-sm text-gray-900">{{ category.vars.label }}</label>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    {% endif %}
 
     <button class="text-white hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none w-full " style="background-color:#4748EE">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

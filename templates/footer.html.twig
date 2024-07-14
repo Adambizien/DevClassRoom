@@ -23,12 +23,12 @@
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
                   <h2 class="mb-6 text-sm font-semibold  uppercase text-white">DevClassRoom</h2>
-                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                  <ul class=" font-medium">
                       <li class="mb-4">
-                          <a href="{{ path('app_whoweare') }}" class="hover:underline">Qui sommes-nous ?</a>
+                          <a href="{{ path('app_whoweare') }}" class="hover:underline {{ app.request.attributes.get('_route') == 'app_whoweare' ? 'text-[#4748EE] ' : 'text-gray-500'  }}">Qui sommes-nous ?</a>
                       </li>
                       <li>
-                          <a href="{{path('app_mail_to_admin')}}" class="hover:underline">Nous contacter</a>
+                          <a href="{{path('app_mail_to_admin')}}" class="hover:underline {{ app.request.attributes.get('_route') == 'app_mail_to_admin' ? 'text-[#4748EE] ' : 'text-gray-500'  }}">Nous contacter</a>
                       </li>
                   </ul>
               </div>
@@ -42,15 +42,15 @@
               </div>
               <div>
                   <h2 class="mb-6 text-sm font-semibold uppercase text-white">Légal</h2>
-                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                  <ul class="font-medium">
                       <li class="mb-2">
-                          <a href="{{ path('app_privacy_policy') }}" class="hover:underline">Politique de Confidentialité</a>
+                          <a href="{{ path('app_privacy_policy') }}" class="hover:underline  {{ app.request.attributes.get('_route') == 'app_privacy_policy' ? 'text-[#4748EE] ' : 'text-gray-500'  }}">Politique de Confidentialité</a>
                       </li>
                       <li class="mb-2">
-                          <a href="{{ path('app_gcu') }}" class="hover:underline">Conditions Générales d'Utilisation</a>
+                          <a href="{{ path('app_gcu') }}" class="hover:underline  {{ app.request.attributes.get('_route') == 'app_gcu' ? 'text-[#4748EE] ' : 'text-gray-500'  }}">Conditions Générales d'Utilisation</a>
                       </li>
                       <li>
-                          <a href="{{ path('app_rgpd')}}" class="hover:underline">RGPD</a>
+                          <a href="{{ path('app_rgpd')}}" class="hover:underline  {{ app.request.attributes.get('_route') == 'app_rgpd' ? 'text-[#4748EE] ' : 'text-gray-500'  }}">RGPD</a>
                       </li>
                   </ul>
               </div>

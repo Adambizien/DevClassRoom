@@ -102,6 +102,16 @@ class ChapterController extends AbstractController
         }
         $chapter = $chapterRepository->findChapterById($request->attributes->get('id'));
         if ($this->isCsrfTokenValid('delete'.$chapter->getId(), $request->getPayload()->get('_token'))) {
+            $tutorial = $tutorialsRepository->findTutorialById($tutorialId);
+            $hitories = $tutorial->getHistories();
+            foreach ($hitories as $history) {
+                if( in_array($chapter->getId(), $history->getProgression()) ){
+                    $progression = $history->getProgression();
+                    $key = array_search($chapter->getId(), $progression);
+                    unset($progression[$key]);
+                    $history->setProgression($progression);
+                }
+            }
             $stepOrderRemove = $chapter->getStepOrder();
             $contents = $chapter->getContent();
     

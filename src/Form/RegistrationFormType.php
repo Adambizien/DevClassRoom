@@ -34,6 +34,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez sélectionner votre rôle',
                     ]),
                 ],
+                'data' => 'ROLE_USER',
             ])
             ->add('email', null, [
                 'required' => true,
