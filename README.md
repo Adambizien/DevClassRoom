@@ -192,6 +192,9 @@ Débugage de prod :
 - metter APP_ENV=prod
 APP_DEBUG=0 dans le .env .
 
+- fix quelques styles, création d'un script pour créer un administrateur et supprimer certaines images. [ici](https://github.com/Adambizien/DevClassRoom/commit/a1aa1ce47ac4fd792f515a5c4facdcbe6672aaf8)
+  
+
 
 
     
