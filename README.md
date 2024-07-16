@@ -193,7 +193,9 @@ Débugage de prod :
 APP_DEBUG=0 dans le .env .
 
 - fix quelques styles, création d'un script pour créer un administrateur et supprimer certaines images. [ici](https://github.com/Adambizien/DevClassRoom/commit/a1aa1ce47ac4fd792f515a5c4facdcbe6672aaf8)
-- git pull dans le projet en prod et vider le cache 
+- git pull dans le projet en prod et vider le cache
+- bug sur la recherche de formation [ici](https://github.com/Adambizien/DevClassRoom/commit/adaa655d08c0f19161ec1bbd9bff3bfdfd26e563)
+- bug sur la vidéo dans les contenut [ici](https://github.com/Adambizien/DevClassRoom/commit/ec892338fae249d747b0ebb68b9d101b5e0077ec)
   
 
 
