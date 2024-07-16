@@ -1,3 +1,9 @@
+
+# Rendre le script exécutable :
+# chmod +x create_admin.sh
+# Exécutez le script :
+# ./create_admin.sh
+
 #!/bin/bash
 
 # Chemin vers le fichier .env.local
@@ -72,8 +78,8 @@ else
 fi
 
 hashed_password=$(php -r "echo password_hash('$admin_password', PASSWORD_BCRYPT);")
-createdAt=$(date -Iseconds)
-updatedAt=$(date -Iseconds)
+createdAt=$(date +"%Y-%m-%d %H:%M:%S")
+updatedAt=$(date +"%Y-%m-%d %H:%M:%S")
 
 mysql -u "$DB_USER" -p"$DB_PASSWORD" -h "$DB_HOST" -P "$DB_PORT" "$DB_NAME" <<EOF
 INSERT INTO user (email, roles, password, name, first_name, phone_number, created_at, updated_at, status, date_of_birth) 
