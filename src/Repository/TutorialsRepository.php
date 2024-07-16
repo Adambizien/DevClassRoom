@@ -64,15 +64,46 @@ class TutorialsRepository extends ServiceEntityRepository
 
     // Recherche par nom de formation et/ou catégories
 
-    public function findBySearchCriteria(?string $searchTerm, ArrayCollection $categories): array
+    // public function findBySearchCriteria(?string $searchTerm, ArrayCollection $categories): array
+    // {
+    //     $qb = $this->createQueryBuilder('t');
+
+    //     if ($searchTerm) {
+    //         $qb->andWhere('t.title LIKE :searchTerm')
+    //         ->setParameter('searchTerm', '%' . $searchTerm . '%');
+    //     }
+
+    //     $categoryIds = [];
+    //     foreach ($categories as $category) {
+    //         $categoryIds[] = $category->getId();
+    //     }
+
+    //     if (!empty($categoryIds)) {
+    //         $qb->leftJoin('t.categories', 'c')
+    //         ->groupBy('t.id')
+    //         ->having('COUNT(c.id) = :numCategories')
+    //         ->andWhere('c.id IN (:categoryIds)')
+    //         ->setParameter('categoryIds', $categoryIds)
+    //         ->setParameter('numCategories', count($categoryIds));
+    //     }
+
+    //     return $qb->orderBy('t.id', 'ASC')
+    //             ->getQuery()
+    //             ->getResult();
+    // }
+
+    public function findBySearchCriteriaWithStatusOn(?string $searchTerm, ArrayCollection $categories): array
     {
-        $qb = $this->createQueryBuilder('t');
+        $qb = $this->createQueryBuilder('t')
+            ->where('t.status = :status')
+            ->setParameter('status', 'on');
 
         if ($searchTerm) {
             $qb->andWhere('t.title LIKE :searchTerm')
             ->setParameter('searchTerm', '%' . $searchTerm . '%');
         }
 
+        //with categories status on
         $categoryIds = [];
         foreach ($categories as $category) {
             $categoryIds[] = $category->getId();
@@ -80,17 +111,16 @@ class TutorialsRepository extends ServiceEntityRepository
 
         if (!empty($categoryIds)) {
             $qb->leftJoin('t.categories', 'c')
-            ->groupBy('t.id')
-            ->having('COUNT(c.id) = :numCategories')
             ->andWhere('c.id IN (:categoryIds)')
-            ->setParameter('categoryIds', $categoryIds)
-            ->setParameter('numCategories', count($categoryIds));
+            ->andWhere('c.status = :status')
+            ->setParameter('status', 'on')
+            ->setParameter('categoryIds', $categoryIds);
         }
 
         return $qb->orderBy('t.id', 'ASC')
                 ->getQuery()
                 ->getResult();
-    }  
+    }
 
     public function get3LastTutorialswithStatusOnAndWithImageName(): array
     {

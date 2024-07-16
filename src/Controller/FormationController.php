@@ -30,7 +30,7 @@ class FormationController extends AbstractController
             // dd($searchTerm,$categories);
 
             // Recherche par nom de formation et/ou catégories
-            $tutorials = $tutorialsRepository->findBySearchCriteria($searchTerm, $categories);
+            $tutorials = $tutorialsRepository->findBySearchCriteriaWithStatusOn($searchTerm, $categories);
         }else{
             $tutorials = $tutorialsRepository->findAllTutorialsWithStastusOn();
         }
