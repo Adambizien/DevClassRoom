@@ -84,7 +84,7 @@
       composer require symfony/mailer
     ```
       Allez sur mailtrap.io pour configurer le MAILER_DSN dans le .env, puis créez l'interface de messagerie. <br> 
-      Et enfin, créer le formulaire. [ici](https://github.com/Adambizien/DevClassRoom/commit/d6f492c87923d5f151fe8c6b532322cc654084b3)  <br>
+      Et enfin, créer le formulaire. [ici](https://github.com/Adambizien/DevClassRoom/commit/d6f492c87923d5f151fe8c6b532322cc654084b3) <br>
       Avec les commandes : <br>
       ```
         php bin/console make:controller 
