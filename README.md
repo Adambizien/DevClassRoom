@@ -156,8 +156,8 @@
 - Effectuer un ```composer install```.
 
 - ```php bin/console doctrine:database:create``` pour créer la base de données.
-- ```php bin/console doctrine:schema:update --force```  pour la migration.
-- ```sudo ufw status``` pour vérifier que le port 80 est compris dans le pare-feu.
+- ```php bin/console doctrine:schema:update --force``` pour la migration.
+- ```sudo ufw status``` pour vérifier que le port 80 est ouvert dans le pare-feu.
 - Aller dans etc/nginx/sites-available/, puis créer un fichier ```sudo nano site_DevClassRoom``` et y ajouter ce qui suit : <br>
 ```
 server {
@@ -181,7 +181,7 @@ server {
 }
 ```
 
-- Ensuite, on le met dans les sites-enabled avec cette commande  :  <br>
+- Ensuite, déplacez-le dans sites-enabled avec cette commande : <br>
   ```
   sudo ln -s /etc/nginx/sites-available/site_kanban /etc/nginx/sites-enabled/
   ```
@@ -190,24 +190,22 @@ server {
   sudo systemctl restart nginx
   ```
 
-- mais il y a des buges de permision :<br>
+- Attention aux bugs de permission :<br>
   ```
   sudo mkdir -p /var/www/html/DevClassRoom/var/cache/dev
   sudo chown -R www-data:www-data /var/www/html/DevClassRoom/var
   sudo chmod -R 775 /var/www/html/DevClassRoom/var
   ```
 
-- mais j'ai aussi oublier de metter la webback machine : <br>
+- Attention de ne pas oublier de mettre en place la Webback Machine : <br>
   ```
   cd /var/www/html/DevClassRoom
   npm install
   npm run build ( pour la prod)
   ```
   
-- et aussi j'ai oublier de mettre dans le .env le MAILER_DSN <br>
-- et j'ai aussi oublier les permision pour les images
-
-- et aussi ouvrire les permision pour les image avec :
+- Attention de ne pas oublier de mettre le MAILER_DSN dans le fichier .env. <br>
+- Attention de ne pas oublier les permissions pour les images: <br>
   ```
   sudo chown -R www-data:www-data /var/www/html/DevClassRoom/public/images/content/
   sudo chmod -R 755 /var/www/html/DevClassRoom/public/images/content/
@@ -215,9 +213,8 @@ server {
   sudo chmod -R 755 /var/www/html/DevClassRoom/public/images/tutorials/
   ```
 
-
-Débugage de prod : 
-- refaire un    ```php bin/console doctrine:schema:update --force ``` en raison d'un bug
+### Débogage en production:
+- Refaire un ```php bin/console doctrine:schema:update --force ``` en raison d'un bug.
 - Vérifiez les permissions des répertoires de logs et de cache : <br>
   Assurez-vous que les répertoires var/log et var/cache existent et sont accessibles en écriture par le serveur web. <br>
   ```
@@ -225,14 +222,12 @@ Débugage de prod :
   sudo chown -R www-data:www-data var/log var/cache
   sudo chmod -R 775 var/log var/cache
   ```
+- Mettre ```APP_ENV=prod APP_DEBUG=0``` dans le fichier .env.
 
-- metter   ```APP_ENV=prod
-APP_DEBUG=0  ``` dans le .env .
-
-- fix quelques styles, création d'un script pour créer un administrateur et supprimer certaines images. [ici](https://github.com/Adambizien/DevClassRoom/commit/a1aa1ce47ac4fd792f515a5c4facdcbe6672aaf8)
-- git pull dans le projet en prod et vider le cache
-- bug sur la recherche de formation [ici](https://github.com/Adambizien/DevClassRoom/commit/adaa655d08c0f19161ec1bbd9bff3bfdfd26e563)
-- bug sur la vidéo dans les contenut [ici](https://github.com/Adambizien/DevClassRoom/commit/ec892338fae249d747b0ebb68b9d101b5e0077ec)
+- Fixer quelques styles, créer un script pour ajouter un administrateur et supprimer certaines images. [ici](https://github.com/Adambizien/DevClassRoom/commit/a1aa1ce47ac4fd792f515a5c4facdcbe6672aaf8)
+- Bug sur la recherche de formation [ici](https://github.com/Adambizien/DevClassRoom/commit/adaa655d08c0f19161ec1bbd9bff3bfdfd26e563)
+- Bug sur la vidéo dans le contenu [ici](https://github.com/Adambizien/DevClassRoom/commit/ec892338fae249d747b0ebb68b9d101b5e0077ec)
+- Effectuer un ```git pull``` dans le projet en production et vider le cache.
   
 
 
