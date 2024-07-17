@@ -91,9 +91,11 @@
         php bin/console make:form
       ```    
 Étape 7 (branche : [profile](https://github.com/Adambizien/DevClassRoom/commits/profile/) ) : <br>    
-  - Implémenter l'interface de profil avec l'édition des informations de l'utilisateur : [ici](https://github.com/Adambizien/DevClassRoom/commit/e2df45d3e1e0737d67d7b6d050f52f3fa45e014b) <br> 
-      php bin/console make:controller <br> 
+  - Implémenter l'interface de profil avec l'édition des informations de l'utilisateur : [ici](https://github.com/Adambizien/DevClassRoom/commit/e2df45d3e1e0737d67d7b6d050f52f3fa45e014b) <br>
+    ```
+      php bin/console make:controller
       php bin/console make:form
+    ```
     
 Étape 8 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
   - Implémenter l'interface administrateur avec l'édition des rôles des utilisateurs: [ici](https://github.com/Adambizien/DevClassRoom/commit/2d8d72acadf0cbd68d7de94d7a31ed12f2cf38e0) <br> 
