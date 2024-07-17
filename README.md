@@ -17,9 +17,11 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
     ```
 
     - Pour installer l'ORM : <br>
-      composer require orm <br>
-      composer require --dev symfony/maker-bundle <br>
-      composer require --dev orm-fixtures <br>
+    ```
+      composer require orm
+      composer require --dev symfony/maker-bundle
+      composer require --dev orm-fixtures
+    ```
       Créer le fichier .env.local avec le nom de la base de données souhaitée.<br>
       php bin/console doctrine:database:create <br>
       
