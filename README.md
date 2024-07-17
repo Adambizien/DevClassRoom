@@ -24,10 +24,10 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
     - php  bin/console make:subscriber <br>
         -> ExceptionSubscriber <br>
         ->  kernel.exception <br>
-    - Puis modifier le ExceptionSubscriber.php <br>
-    - Enfin ajouter le template error
-    - Si vous modifiez le template error, supprimez le cache pour que les modifications soient prises en compte.(php bin/console cache:clear).
-- Faire le style avec tailwind [ici](https://github.com/Adambizien/DevClassRoom/commit/80410afad7799b574efe88ecfa1b3b1f27426ddb) 
+    - Puis modifier le fichier ExceptionSubscriber.php.<br>
+    - Enfin, ajouter le template d'erreur.
+    - Si vous modifiez le template d'erreur, supprimez le cache pour que les modifications soient prises en compte (exécutez php bin/console cache:clear).
+- Appliquer le style avec Tailwind [ici](https://github.com/Adambizien/DevClassRoom/commit/80410afad7799b574efe88ecfa1b3b1f27426ddb)
 
 Étape 3 [ici](https://github.com/Adambizien/DevClassRoom/commit/a5c091b3a84dbf9d783a36239723ecf57378c481) : <br>
   - Initialiser tailwind : [ici](https://flowbite.com/docs/getting-started/symfony/)
