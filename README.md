@@ -64,7 +64,7 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
     
 Étape 5 (branche : [homeHeaderFooter](https://github.com/Adambizien/DevClassRoom/tree/homeHeaderFooter) ) : <br>    
 
-  - Implémenter le home, le header et le footer
+  - Implémenter la page home, le header et le footer.
     
 Étape 6 (branche : [contactUs](https://github.com/Adambizien/DevClassRoom/tree/contactUs) ) : <br>    
   - Implémenter la page mail pour envoyer un mail aux adminitrateur si le user veux devenir formateur ou tout simplement nous contacter: <br> 
