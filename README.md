@@ -41,9 +41,11 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
 
 Étape 3 [ici](https://github.com/Adambizien/DevClassRoom/commit/a5c091b3a84dbf9d783a36239723ecf57378c481) : <br>
   - Initialiser Tailwind :[ici](https://flowbite.com/docs/getting-started/symfony/)
-  - Ne pas oublier : 
+  - Ne pas oublier : <br>
+```
        composer require symfony/webpack-encore-bundle <br>
        npm run watch
+```
   - Initialiser Flowbite CDN : [ici](https://flowbite.com/docs/getting-started/quickstart/#include-via-cdn)
     
 Étape 4 (branche : [UserInterface](https://github.com/Adambizien/DevClassRoom/commits/UserInterface) ) : <br>    
