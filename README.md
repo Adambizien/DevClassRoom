@@ -38,7 +38,7 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
     
 Étape 4 (branche : [UserInterface](https://github.com/Adambizien/DevClassRoom/commits/UserInterface) ) : <br>    
 
-  - Implémenter le user et le système de connexion :
+  - Implémenter l'utilisateur et le système de connexion :
     - Avec les commandes :
       composer require symfony/security-bundle <br>
       
@@ -60,7 +60,7 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
       -> no <br>
 
     php bin/console doctrine:schema:update --force
-  - Faire le style des interfaces register et login [ici](https://github.com/Adambizien/DevClassRoom/commit/48e4c3c9142b0e5b84c3ca19218c7ffb94bd17b4)
+  - Styliser les interfaces d'inscription et de connexion [ici](https://github.com/Adambizien/DevClassRoom/commit/48e4c3c9142b0e5b84c3ca19218c7ffb94bd17b4)
     
 Étape 5 (branche : [homeHeaderFooter](https://github.com/Adambizien/DevClassRoom/tree/homeHeaderFooter) ) : <br>    
 
