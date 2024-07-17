@@ -34,9 +34,9 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
         -> ExceptionSubscriber
         ->  kernel.exception
 ```
-    - Puis modifier le fichier ExceptionSubscriber.php.<br>
-    - Enfin, ajouter le template d'erreur.
-    - Si vous modifiez le template d'erreur, supprimez le cache pour que les modifications soient prises en compte (exécutez php bin/console cache:clear).
+  - Puis modifier le fichier ExceptionSubscriber.php.<br>
+  - Enfin, ajouter le template d'erreur.
+  - Si vous modifiez le template d'erreur, supprimez le cache pour que les modifications soient prises en compte (exécutez ``` php bin/console cache:clear ```).
 - Appliquer le style avec Tailwind [ici](https://github.com/Adambizien/DevClassRoom/commit/80410afad7799b574efe88ecfa1b3b1f27426ddb)
 
 Étape 3 [ici](https://github.com/Adambizien/DevClassRoom/commit/a5c091b3a84dbf9d783a36239723ecf57378c481) : <br>
