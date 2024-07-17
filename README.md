@@ -60,14 +60,14 @@
       -> 
       -> email
       ->
-      php bin/console make:security:form-login <br>
-      -> <br>
-      -> <br>
+      php bin/console make:security:form-login 
+      -> 
+      -> 
       
-      php bin/console make:registration-form <br>
-      -> yes <br>
-      -> no <br>
-      -> no <br>
+      php bin/console make:registration-form
+      -> yes
+      -> no
+      -> no
   ```
   ```
     php bin/console doctrine:schema:update --force
