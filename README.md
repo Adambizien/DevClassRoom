@@ -76,7 +76,7 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
       php bin/console make:form
     
 Étape 7 (branche : [profile](https://github.com/Adambizien/DevClassRoom/commits/profile/) ) : <br>    
-  - Implémenter l'interface profil avec les edit des infos du User: [ici](https://github.com/Adambizien/DevClassRoom/commit/e2df45d3e1e0737d67d7b6d050f52f3fa45e014b) <br> 
+  - Implémenter l'interface de profil avec l'édition des informations de l'utilisateur : [ici](https://github.com/Adambizien/DevClassRoom/commit/e2df45d3e1e0737d67d7b6d050f52f3fa45e014b) <br> 
       php bin/console make:controller <br> 
       php bin/console make:form
     
