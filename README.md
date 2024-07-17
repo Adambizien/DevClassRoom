@@ -142,7 +142,7 @@
   - Effectuer un merge dans la branche main.
 
 ## OVH :
-- On crée un sous-domaine DevClassRoom.bizienadam.fr dans la zone DNS de OVH.
+- Créer un sous-domaine [DevClassRoom.bizienadam.fr](DevClassRoom.bizienadam.fr) dans la zone DNS d'OVH.
 - Si ce n'est pas le cas, installer Symfony : <br>
   ```
   curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
