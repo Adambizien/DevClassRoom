@@ -113,14 +113,17 @@
       php bin/console doctrine:schema:update --force
     ```
   - Faire un make CRUD sur toutes les entités: [ici](https://github.com/Adambizien/DevClassRoom/commit/b7b8550a1ef5a0dd8697a14722d17be540be00a1) <br>
+    ```
     php bin/console make:crud
-
+    ```
 
 
 Étape 10 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
   - Implémenter l'interface administrateur pour les catégories et les tutoriels : [ici](https://github.com/Adambizien/DevClassRoom/commit/cc933927839d75c273ceb9c52506b74fc6e7b034) <br>
-      php bin/console make:controller <br> 
+      ```
+      php bin/console make:controller
       php bin/console make:form
+      ```
       Implémentation de VichUploaderBundle pour la gestion des images : [ici](https://github.com/dustin10/VichUploaderBundle)
 
 Étape 11 (branche : [formationInterface](https://github.com/Adambizien/DevClassRoom/commits/formationInterface) ) : <br>    
