@@ -159,25 +159,27 @@
 - php bin/console doctrine:schema:update --force  pour la migration.
 - sudo ufw status pour vérifier que le port 80 est compris dans le pare-feu (si ce n'est pas déjà fait).
 - Aller dans etc/nginx/sites-available/, puis créer un fichier sudo nano site_DevClassRoom et y ajouter ce qui suit : <br>
-server {<br>
-    listen 80; <br>
+```
+server {
+    listen 80;
 
 
-    server_name Kanban.bizienadam.fr; <br>
+    server_name Kanban.bizienadam.fr;
 
-    root /var/www/html/NWSKanbanProject/public; <br>
-    index index.php index.html index.htm; <br>
+    root /var/www/html/NWSKanbanProject/public;
+    index index.php index.html index.htm;
 
-    location / { <br>
-         try_files $uri $uri/ /index.php?$query_string; <br>
-    } <br>
+    location / {
+         try_files $uri $uri/ /index.php?$query_string;
+    }
 
-    location ~ \.php$ { <br>
-          include snippets/fastcgi-php.conf; <br>
-          fastcgi_pass unix:/run/php/php-fpm.sock; <br>
-     } <br>
+    location ~ \.php$ { 
+          include snippets/fastcgi-php.conf;
+          fastcgi_pass unix:/run/php/php-fpm.sock;
+     }
 
-} <br>
+}
+```
 
 - Ensuite, on le met dans les sites-enabled avec cette commande  :  <br>
   sudo ln -s /etc/nginx/sites-available/site_kanban /etc/nginx/sites-enabled/
