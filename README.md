@@ -11,8 +11,10 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
       ```
     
     - Pour créer le projet : <br>
-      symfony check:requirements <br>
-      symfony new my_project_directory --version="7.0.*" --webapp <br>
+    ```
+      symfony check:requirements
+      symfony new my_project_directory --version="7.0.*" --webapp
+    ```
 
     - Pour installer l'ORM : <br>
       composer require orm <br>
