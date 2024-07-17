@@ -109,7 +109,7 @@
       ![Diagramme sans nom drawio](https://github.com/Adambizien/DevClassRoom/assets/127780676/db6f4616-a6c4-46d3-b38b-0846e53289eb) <br>
       (SCU -> Status - CreatedAt - UpdatedAt et CU -> CreatedAt - UpdatedAt ) <br>
     ```
-      php bin/console make:entity <br>
+      php bin/console make:entity
       php bin/console doctrine:schema:update --force
     ```
   - Faire un make CRUD sur toutes les entités: [ici](https://github.com/Adambizien/DevClassRoom/commit/b7b8550a1ef5a0dd8697a14722d17be540be00a1) <br>
