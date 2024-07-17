@@ -142,7 +142,7 @@
   - Effectuer un merge dans la branche main.
 
 ## OVH :
-- Créer un sous-domaine [http://devclassroom.bizienadam.fr/](http://devclassroom.bizienadam.fr/) dans la zone DNS d'OVH.
+- Créer un sous-domaine [http://devclassroom.bizienadam.fr/](http://devclassroom.bizienadam.fr/) dans la zone DNS d'OVH.<br>
 - Si ce n'est pas le cas, installer Symfony : <br>
   ```
   curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
@@ -150,15 +150,15 @@
   symfony
   symfony check:requirements
   ```
--   ```git clone https://github.com/Adambizien/DevClassRoom.git``` dans le var/www/html pour récupérer le projet.
-- Modifier le fichier .env (en mode prod).
-- Change le .env avec les info de la database.
-- Effectuer un composer install.
+-   ```git clone https://github.com/Adambizien/DevClassRoom.git``` Dans le dossier var/www/html pour récupérer le projet.
+- Modifier le fichier .env (en mode production).
+- Modifier le fichier .env avec les informations de la base de données.
+- Effectuer un ```composer install```.
 
-- php bin/console doctrine:database:create pour créer la base de données.
-- php bin/console doctrine:schema:update --force  pour la migration.
-- sudo ufw status pour vérifier que le port 80 est compris dans le pare-feu (si ce n'est pas déjà fait).
-- Aller dans etc/nginx/sites-available/, puis créer un fichier sudo nano site_DevClassRoom et y ajouter ce qui suit : <br>
+- ```php bin/console doctrine:database:create``` pour créer la base de données.
+- ```php bin/console doctrine:schema:update --force```  pour la migration.
+- ```sudo ufw status``` pour vérifier que le port 80 est compris dans le pare-feu.
+- Aller dans etc/nginx/sites-available/, puis créer un fichier ```sudo nano site_DevClassRoom``` et y ajouter ce qui suit : <br>
 ```
 server {
     listen 80;
