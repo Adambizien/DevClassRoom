@@ -104,10 +104,10 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
       Implémentation de VichUploaderBundle pour la gestion des images : [ici](https://github.com/dustin10/VichUploaderBundle)
 
 Étape 11 (branche : [formationInterface](https://github.com/Adambizien/DevClassRoom/commits/formationInterface) ) : <br>    
-  - Implémenter l'interface de la vue tutoriels  : [ici](https://github.com/Adambizien/DevClassRoom/commit/48a98d55c7b7986d6ffa99d04749fd5bf451d5c8) <br>
+  - Implémenter l'interface de la vue des tutoriels : [ici](https://github.com/Adambizien/DevClassRoom/commit/48a98d55c7b7986d6ffa99d04749fd5bf451d5c8) <br>
 
 Étape 12 (branche : [historiqueInterface](https://github.com/Adambizien/DevClassRoom/tree/historiqueInterface) ) : <br>    
-  - Implémenter l'interface d'historique  : [ici](https://github.com/Adambizien/DevClassRoom/commit/d5abf3b26330efebe15873c6999fdbc6a1d037a7) <br>
+  - Implémenter l'interface d'historique : [ici](https://github.com/Adambizien/DevClassRoom/commit/d5abf3b26330efebe15873c6999fdbc6a1d037a7) <br>
 
 Étape 13 (branche : [legalInterface](https://github.com/Adambizien/DevClassRoom/commits/LegalInterface/) ) : <br>    
   - Implémenter l'interface Légal  : [ici](https://github.com/Adambizien/DevClassRoom/commit/980117a664b32c6424f77f29f9e3992adfc99d29) <br>
