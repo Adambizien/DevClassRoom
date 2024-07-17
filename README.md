@@ -67,11 +67,11 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
   - Implémenter la page home, le header et le footer.
     
 Étape 6 (branche : [contactUs](https://github.com/Adambizien/DevClassRoom/tree/contactUs) ) : <br>    
-  - Implémenter la page mail pour envoyer un mail aux adminitrateur si le user veux devenir formateur ou tout simplement nous contacter: <br> 
+  - Implémenter la page de contact pour envoyer un email aux administrateurs si l'utilisateur souhaite devenir formateur ou simplement nous contacter: <br> 
       composer require symfony/mailer <br> 
-      allez dans mailtrap.io puir comfigurer le MAILER_DSN dans le .env ensuite faire l'interface de mail. <br> 
-      et enfin faire le formulaire [ici](https://github.com/Adambizien/DevClassRoom/commit/d6f492c87923d5f151fe8c6b532322cc654084b3) 
-      avec les commande : <br> 
+      Allez sur mailtrap.io pour configurer le MAILER_DSN dans le .env, puis créez l'interface de messagerie. <br> 
+      Et enfin, créer le formulaire. [ici](https://github.com/Adambizien/DevClassRoom/commit/d6f492c87923d5f151fe8c6b532322cc654084b3) 
+      avec les commandes : <br> 
       php bin/console make:controller <br> 
       php bin/console make:form
     
