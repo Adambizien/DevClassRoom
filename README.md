@@ -29,9 +29,11 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
       
 Étape 2 [ici](https://github.com/Adambizien/DevClassRoom/commit/20a43793b4a3c2b818f5c88af2af8579f44bb72f) : <br>
   - Faire un subscribe pour styliser nos pages d'erreur : <br>
-    - php  bin/console make:subscriber <br>
-        -> ExceptionSubscriber <br>
-        ->  kernel.exception <br>
+```
+    php  bin/console make:subscriber
+        -> ExceptionSubscriber
+        ->  kernel.exception
+```
     - Puis modifier le fichier ExceptionSubscriber.php.<br>
     - Enfin, ajouter le template d'erreur.
     - Si vous modifiez le template d'erreur, supprimez le cache pour que les modifications soient prises en compte (exécutez php bin/console cache:clear).
