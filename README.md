@@ -1,7 +1,7 @@
 # Conception du site DevClassRoom : [http://devclassroom.bizienadam.fr/](http://devclassroom.bizienadam.fr/)
 
 
-## Étape 1 : <br>
+### Étape 1 : <br>
   - Initialisation du projet avec les commandes : <br>
       - Si vous n'avez pas Symfony : <br>
       ```
@@ -27,7 +27,7 @@
       php bin/console doctrine:database:create
     ```
       
-## Étape 2 [ici](https://github.com/Adambizien/DevClassRoom/commit/20a43793b4a3c2b818f5c88af2af8579f44bb72f) : <br>
+### Étape 2 [ici](https://github.com/Adambizien/DevClassRoom/commit/20a43793b4a3c2b818f5c88af2af8579f44bb72f) : <br>
   - Faire un subscribe pour styliser nos pages d'erreur : <br>
 ```
     php  bin/console make:subscriber
