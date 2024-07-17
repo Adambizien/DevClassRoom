@@ -98,17 +98,20 @@
     ```
     
 Étape 8 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
-  - Implémenter l'interface administrateur avec l'édition des rôles des utilisateurs: [ici](https://github.com/Adambizien/DevClassRoom/commit/2d8d72acadf0cbd68d7de94d7a31ed12f2cf38e0) <br> 
-      php bin/console make:controller <br> 
+  - Implémenter l'interface administrateur avec l'édition des rôles des utilisateurs: [ici](https://github.com/Adambizien/DevClassRoom/commit/2d8d72acadf0cbd68d7de94d7a31ed12f2cf38e0) <br>
+    ```
+      php bin/console make:controller 
       php bin/console make:form
+    ```
 
 Étape 9 (branche : [Entities](https://github.com/Adambizien/DevClassRoom/commits/Entities) ) : <br>    
   - Implémenter toutes les entités nécessaires pour ce site : [ici](https://github.com/Adambizien/DevClassRoom/commit/2a511142b5c1e88d463263c5e1fdf0245cea446f)
       ![Diagramme sans nom drawio](https://github.com/Adambizien/DevClassRoom/assets/127780676/db6f4616-a6c4-46d3-b38b-0846e53289eb) <br>
       (SCU -> Status - CreatedAt - UpdatedAt et CU -> CreatedAt - UpdatedAt ) <br>
-      
+    ```
       php bin/console make:entity <br>
       php bin/console doctrine:schema:update --force
+    ```
   - Faire un make CRUD sur toutes les entités: [ici](https://github.com/Adambizien/DevClassRoom/commit/b7b8550a1ef5a0dd8697a14722d17be540be00a1) <br>
     php bin/console make:crud
 
