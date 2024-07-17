@@ -144,11 +144,13 @@
 OVH :
 - On crée un sous-domaine DevClassRoom.bizienadam.fr dans la zone DNS de OVH.
 - Si ce n'est pas le cas, installer Symfony : <br>
-  curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash <br>
-  sudo apt install symfony-cli <br>
-  symfony <br>
-  symfony check:requirements <br>
-- git clone https://github.com/Adambizien/DevClassRoom.git dans le var/www/html pour récupérer le projet.
+  ```
+  curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
+  sudo apt install symfony-cli
+  symfony
+  symfony check:requirements
+  ```
+-   ```git clone https://github.com/Adambizien/DevClassRoom.git``` dans le var/www/html pour récupérer le projet.
 - Modifier le fichier .env (en mode prod).
 - Change le .env avec les info de la database.
 - Effectuer un composer install.
