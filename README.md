@@ -1,4 +1,4 @@
-Conception site d'apprentissage DevClassRoom [http://devclassroom.bizienadam.fr/](http://devclassroom.bizienadam.fr/).
+Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devclassroom.bizienadam.fr/).
 
 
 Étape 1 : <br>
@@ -16,7 +16,7 @@ Conception site d'apprentissage DevClassRoom [http://devclassroom.bizienadam.fr/
       composer require orm <br>
       composer require --dev symfony/maker-bundle <br>
       composer require --dev orm-fixtures <br>
-      faire le .env.local avec le nom de database voulue <br>
+      Créer le fichier .env.local avec le nom de la base de données souhaitée.<br>
       php bin/console doctrine:database:create <br>
       
 Étape 2 [ici](https://github.com/Adambizien/DevClassRoom/commit/20a43793b4a3c2b818f5c88af2af8579f44bb72f) : <br>
