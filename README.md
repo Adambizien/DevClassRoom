@@ -182,42 +182,52 @@ server {
 ```
 
 - Ensuite, on le met dans les sites-enabled avec cette commande  :  <br>
+  ```
   sudo ln -s /etc/nginx/sites-available/site_kanban /etc/nginx/sites-enabled/
+  ```
 - Relancer Nginx avec cette commande : <br>
+  ```
   sudo systemctl restart nginx
-- Normalement, cela fonctionne.
+  ```
 
 - mais il y a des buges de permision :<br>
-  sudo mkdir -p /var/www/html/DevClassRoom/var/cache/dev <br>
-sudo chown -R www-data:www-data /var/www/html/DevClassRoom/var <br>
-sudo chmod -R 775 /var/www/html/DevClassRoom/var <br>
+  ```
+  sudo mkdir -p /var/www/html/DevClassRoom/var/cache/dev
+  sudo chown -R www-data:www-data /var/www/html/DevClassRoom/var
+  sudo chmod -R 775 /var/www/html/DevClassRoom/var
+  ```
 
 - mais j'ai aussi oublier de metter la webback machine : <br>
-  cd /var/www/html/DevClassRoom <br>
-  npm install <br>
-  npm run build ( pour la prod) <br>
+  ```
+  cd /var/www/html/DevClassRoom
+  npm install
+  npm run build ( pour la prod)
+  ```
   
 - et aussi j'ai oublier de mettre dans le .env le MAILER_DSN <br>
 - et j'ai aussi oublier les permision pour les images
 
 - et aussi ouvrire les permision pour les image avec :
-  sudo chown -R www-data:www-data /var/www/html/DevClassRoom/public/images/content/ <br>
-  sudo chmod -R 755 /var/www/html/DevClassRoom/public/images/content/<br>
-  sudo chown -R www-data:www-data /var/www/html/DevClassRoom/public/images/tutorials/ <br>
-  sudo chmod -R 755 /var/www/html/DevClassRoom/public/images/tutorials/ <br>
+  ```
+  sudo chown -R www-data:www-data /var/www/html/DevClassRoom/public/images/content/
+  sudo chmod -R 755 /var/www/html/DevClassRoom/public/images/content/
+  sudo chown -R www-data:www-data /var/www/html/DevClassRoom/public/images/tutorials/
+  sudo chmod -R 755 /var/www/html/DevClassRoom/public/images/tutorials/
+  ```
 
 
 Débugage de prod : 
-- refaire un  "php bin/console doctrine:schema:update --force" en raison d'un bug
+- refaire un    ```php bin/console doctrine:schema:update --force ``` en raison d'un bug
 - Vérifiez les permissions des répertoires de logs et de cache : <br>
   Assurez-vous que les répertoires var/log et var/cache existent et sont accessibles en écriture par le serveur web. <br>
-  
-  sudo mkdir -p var/log var/cache <br>
-  sudo chown -R www-data:www-data var/log var/cache <br>
-  sudo chmod -R 775 var/log var/cache <br>
+  ```
+  sudo mkdir -p var/log var/cache
+  sudo chown -R www-data:www-data var/log var/cache
+  sudo chmod -R 775 var/log var/cache
+  ```
 
-- metter APP_ENV=prod
-APP_DEBUG=0 dans le .env .
+- metter   ```APP_ENV=prod
+APP_DEBUG=0  ``` dans le .env .
 
 - fix quelques styles, création d'un script pour créer un administrateur et supprimer certaines images. [ici](https://github.com/Adambizien/DevClassRoom/commit/a1aa1ce47ac4fd792f515a5c4facdcbe6672aaf8)
 - git pull dans le projet en prod et vider le cache
