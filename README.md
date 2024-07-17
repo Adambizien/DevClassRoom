@@ -53,16 +53,17 @@
   - Implémenter l'utilisateur et le système de connexion :
     - Avec les commandes :
   ```
-      composer require symfony/security-bundle <br>
+      composer require symfony/security-bundle
       
-      php bin/console make:user <br>
-      ->  <br>
-      -> <br>
-      -> email <br>
-      -> <br>
-      Ne pas oublier d'ajouter :<br>
-      status, createdAt, updatedAt, name, firstname, phoneNumber et dateOfBirth avec php bin/console make:entity <br>
-      
+      php bin/console make:user
+      -> 
+      -> 
+      -> email
+      ->
+ ```
+  - Ne pas oublier d'ajouter : <br>
+   status, createdAt, updatedAt, name, firstname, phoneNumber et dateOfBirth avec php bin/console make:entity <br>
+ ```
       php bin/console make:security:form-login <br>
       -> <br>
       -> <br>
