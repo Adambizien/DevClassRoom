@@ -5,9 +5,9 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
   - Initialisation du projet avec les commandes : <br>
       - Si vous n'avez pas Symfony : <br>
       ```
-        curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash <br>
-        sudo apt install symfony-cli <br>
-        symfony <br>
+        curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
+        sudo apt install symfony-cli
+        symfony
       ```
     
     - Pour créer le projet : <br>
