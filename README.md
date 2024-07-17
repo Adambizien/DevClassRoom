@@ -81,7 +81,7 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
       php bin/console make:form
     
 Étape 8 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
-  - Implémenter l'interface admin mode avec les edit des rôles des Users: [ici](https://github.com/Adambizien/DevClassRoom/commit/2d8d72acadf0cbd68d7de94d7a31ed12f2cf38e0) <br> 
+  - Implémenter l'interface administrateur avec l'édition des rôles des utilisateurs: [ici](https://github.com/Adambizien/DevClassRoom/commit/2d8d72acadf0cbd68d7de94d7a31ed12f2cf38e0) <br> 
       php bin/console make:controller <br> 
       php bin/console make:form
 
