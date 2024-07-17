@@ -23,7 +23,9 @@ Conception du site DevClassRoom [http://devclassroom.bizienadam.fr/](http://devc
       composer require --dev orm-fixtures
     ```
       Créer le fichier .env.local avec le nom de la base de données souhaitée.<br>
-      php bin/console doctrine:database:create <br>
+    ```
+      php bin/console doctrine:database:create
+    ```
       
 Étape 2 [ici](https://github.com/Adambizien/DevClassRoom/commit/20a43793b4a3c2b818f5c88af2af8579f44bb72f) : <br>
   - Faire un subscribe pour styliser nos pages d'erreur : <br>
