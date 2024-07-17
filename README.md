@@ -1,7 +1,7 @@
 # Conception du site DevClassRoom : [http://devclassroom.bizienadam.fr/](http://devclassroom.bizienadam.fr/)
 
 
-Étape 1 : <br>
+## Étape 1 : <br>
   - Initialisation du projet avec les commandes : <br>
       - Si vous n'avez pas Symfony : <br>
       ```
@@ -27,7 +27,7 @@
       php bin/console doctrine:database:create
     ```
       
-Étape 2 [ici](https://github.com/Adambizien/DevClassRoom/commit/20a43793b4a3c2b818f5c88af2af8579f44bb72f) : <br>
+## Étape 2 [ici](https://github.com/Adambizien/DevClassRoom/commit/20a43793b4a3c2b818f5c88af2af8579f44bb72f) : <br>
   - Faire un subscribe pour styliser nos pages d'erreur : <br>
 ```
     php  bin/console make:subscriber
@@ -39,7 +39,7 @@
   - Si vous modifiez le template d'erreur, supprimez le cache pour que les modifications soient prises en compte (exécutez ``` php bin/console cache:clear ```).
 - Appliquer le style avec Tailwind [ici](https://github.com/Adambizien/DevClassRoom/commit/80410afad7799b574efe88ecfa1b3b1f27426ddb)
 
-Étape 3 [ici](https://github.com/Adambizien/DevClassRoom/commit/a5c091b3a84dbf9d783a36239723ecf57378c481) : <br>
+## Étape 3 [ici](https://github.com/Adambizien/DevClassRoom/commit/a5c091b3a84dbf9d783a36239723ecf57378c481) : <br>
   - Initialiser Tailwind :[ici](https://flowbite.com/docs/getting-started/symfony/)
   - Ne pas oublier : <br>
 ```
@@ -48,7 +48,7 @@
 ```
   - Initialiser Flowbite CDN : [ici](https://flowbite.com/docs/getting-started/quickstart/#include-via-cdn)
     
-Étape 4 (branche : [UserInterface](https://github.com/Adambizien/DevClassRoom/commits/UserInterface) ) : <br>    
+## Étape 4 (branche : [UserInterface](https://github.com/Adambizien/DevClassRoom/commits/UserInterface) ) : <br>    
 
   - Implémenter l'utilisateur et le système de connexion :
     - Avec les commandes :
@@ -74,11 +74,11 @@
   ```
   - Styliser les interfaces d'inscription et de connexion [ici](https://github.com/Adambizien/DevClassRoom/commit/48e4c3c9142b0e5b84c3ca19218c7ffb94bd17b4)
     
-Étape 5 (branche : [homeHeaderFooter](https://github.com/Adambizien/DevClassRoom/tree/homeHeaderFooter) ) : <br>    
+## Étape 5 (branche : [homeHeaderFooter](https://github.com/Adambizien/DevClassRoom/tree/homeHeaderFooter) ) : <br>    
 
   - Implémenter la page home, le header et le footer.
     
-Étape 6 (branche : [contactUs](https://github.com/Adambizien/DevClassRoom/tree/contactUs) ) : <br>    
+## Étape 6 (branche : [contactUs](https://github.com/Adambizien/DevClassRoom/tree/contactUs) ) : <br>    
   - Implémenter la page de contact pour envoyer un email aux administrateurs si l'utilisateur souhaite devenir formateur ou simplement nous contacter: <br>
     ```
       composer require symfony/mailer
@@ -90,21 +90,21 @@
         php bin/console make:controller 
         php bin/console make:form
       ```    
-Étape 7 (branche : [profile](https://github.com/Adambizien/DevClassRoom/commits/profile/) ) : <br>    
+## Étape 7 (branche : [profile](https://github.com/Adambizien/DevClassRoom/commits/profile/) ) : <br>    
   - Implémenter l'interface de profil avec l'édition des informations de l'utilisateur : [ici](https://github.com/Adambizien/DevClassRoom/commit/e2df45d3e1e0737d67d7b6d050f52f3fa45e014b) <br>
     ```
       php bin/console make:controller
       php bin/console make:form
     ```
     
-Étape 8 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
+## Étape 8 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
   - Implémenter l'interface administrateur avec l'édition des rôles des utilisateurs: [ici](https://github.com/Adambizien/DevClassRoom/commit/2d8d72acadf0cbd68d7de94d7a31ed12f2cf38e0) <br>
     ```
       php bin/console make:controller 
       php bin/console make:form
     ```
 
-Étape 9 (branche : [Entities](https://github.com/Adambizien/DevClassRoom/commits/Entities) ) : <br>    
+## Étape 9 (branche : [Entities](https://github.com/Adambizien/DevClassRoom/commits/Entities) ) : <br>    
   - Implémenter toutes les entités nécessaires pour ce site : [ici](https://github.com/Adambizien/DevClassRoom/commit/2a511142b5c1e88d463263c5e1fdf0245cea446f)
       ![Diagramme sans nom drawio](https://github.com/Adambizien/DevClassRoom/assets/127780676/db6f4616-a6c4-46d3-b38b-0846e53289eb) <br>
       (SCU -> Status - CreatedAt - UpdatedAt et CU -> CreatedAt - UpdatedAt ) <br>
@@ -118,7 +118,7 @@
     ```
 
 
-Étape 10 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
+## Étape 10 (branche : [adminMode](https://github.com/Adambizien/DevClassRoom/commits/adminMode) ) : <br>    
   - Implémenter l'interface administrateur pour les catégories et les tutoriels : [ici](https://github.com/Adambizien/DevClassRoom/commit/cc933927839d75c273ceb9c52506b74fc6e7b034) <br>
       ```
       php bin/console make:controller
@@ -126,22 +126,22 @@
       ```
       Implémentation de VichUploaderBundle pour la gestion des images : [ici](https://github.com/dustin10/VichUploaderBundle)
 
-Étape 11 (branche : [formationInterface](https://github.com/Adambizien/DevClassRoom/commits/formationInterface) ) : <br>    
+## Étape 11 (branche : [formationInterface](https://github.com/Adambizien/DevClassRoom/commits/formationInterface) ) : <br>    
   - Implémenter l'interface de la vue des tutoriels : [ici](https://github.com/Adambizien/DevClassRoom/commit/48a98d55c7b7986d6ffa99d04749fd5bf451d5c8) <br>
 
-Étape 12 (branche : [historiqueInterface](https://github.com/Adambizien/DevClassRoom/tree/historiqueInterface) ) : <br>    
+## Étape 12 (branche : [historiqueInterface](https://github.com/Adambizien/DevClassRoom/tree/historiqueInterface) ) : <br>    
   - Implémenter l'interface d'historique : [ici](https://github.com/Adambizien/DevClassRoom/commit/d5abf3b26330efebe15873c6999fdbc6a1d037a7) <br>
 
-Étape 13 (branche : [legalInterface](https://github.com/Adambizien/DevClassRoom/commits/LegalInterface/) ) : <br>    
+## Étape 13 (branche : [legalInterface](https://github.com/Adambizien/DevClassRoom/commits/LegalInterface/) ) : <br>    
   - Implémenter l'interface légale : [ici](https://github.com/Adambizien/DevClassRoom/commit/980117a664b32c6424f77f29f9e3992adfc99d29) <br>
 
-Étape 14 (branche : [WhoWeAreInterface](https://github.com/Adambizien/DevClassRoom/commits/WhoWeAreInterface/) ) : <br>    
+## Étape 14 (branche : [WhoWeAreInterface](https://github.com/Adambizien/DevClassRoom/commits/WhoWeAreInterface/) ) : <br>    
   - Implémenter l'interface 'Qui sommes-nous ?' : [ici](https://github.com/Adambizien/DevClassRoom/commit/e7c323be8e8740eac6faf9e966fc0d62250cc027) <br>
 
-Étape 15 (branche : [Main](https://github.com/Adambizien/DevClassRoom/commits/main/) ) : <br>    
+## Étape 15 (branche : [Main](https://github.com/Adambizien/DevClassRoom/commits/main/) ) : <br>    
   - Effectuer un merge dans la branche main.
 
-OVH :
+## OVH :
 - On crée un sous-domaine DevClassRoom.bizienadam.fr dans la zone DNS de OVH.
 - Si ce n'est pas le cas, installer Symfony : <br>
   ```
