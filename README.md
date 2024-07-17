@@ -60,10 +60,6 @@
       -> 
       -> email
       ->
- ```
-  - Ne pas oublier d'ajouter : <br>
-   status, createdAt, updatedAt, name, firstname, phoneNumber et dateOfBirth avec php bin/console make:entity <br>
- ```
       php bin/console make:security:form-login <br>
       -> <br>
       -> <br>
