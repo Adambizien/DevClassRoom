@@ -79,14 +79,17 @@
   - Implémenter la page home, le header et le footer.
     
 Étape 6 (branche : [contactUs](https://github.com/Adambizien/DevClassRoom/tree/contactUs) ) : <br>    
-  - Implémenter la page de contact pour envoyer un email aux administrateurs si l'utilisateur souhaite devenir formateur ou simplement nous contacter: <br> 
-      composer require symfony/mailer <br> 
+  - Implémenter la page de contact pour envoyer un email aux administrateurs si l'utilisateur souhaite devenir formateur ou simplement nous contacter: <br>
+    ```
+      composer require symfony/mailer
+    ```
       Allez sur mailtrap.io pour configurer le MAILER_DSN dans le .env, puis créez l'interface de messagerie. <br> 
       Et enfin, créer le formulaire. [ici](https://github.com/Adambizien/DevClassRoom/commit/d6f492c87923d5f151fe8c6b532322cc654084b3) 
-      avec les commandes : <br> 
-      php bin/console make:controller <br> 
-      php bin/console make:form
-    
+      Avec les commandes : <br>
+      ```
+        php bin/console make:controller 
+        php bin/console make:form
+      ```    
 Étape 7 (branche : [profile](https://github.com/Adambizien/DevClassRoom/commits/profile/) ) : <br>    
   - Implémenter l'interface de profil avec l'édition des informations de l'utilisateur : [ici](https://github.com/Adambizien/DevClassRoom/commit/e2df45d3e1e0737d67d7b6d050f52f3fa45e014b) <br> 
       php bin/console make:controller <br> 
