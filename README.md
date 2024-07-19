@@ -228,6 +228,15 @@ server {
 - Bug sur la recherche de formation [ici](https://github.com/Adambizien/DevClassRoom/commit/adaa655d08c0f19161ec1bbd9bff3bfdfd26e563)
 - Bug sur la vidéo dans le contenu [ici](https://github.com/Adambizien/DevClassRoom/commit/ec892338fae249d747b0ebb68b9d101b5e0077ec)
 - Effectuer un ```git pull``` dans le projet en production et vider le cache.
+
+### Reload le cache prod: 
+```
+rm -rf /var/www/html/DevClassRoom/var/cache/prod
+mkdir -p /var/www/html/DevClassRoom/var/cache/prod
+sudo chown -R $(whoami):www-data /var/www/html/DevClassRoom/var/cache/prod
+sudo chmod -R 775 /var/www/html/DevClassRoom/var/cache/prod
+```
+
   
 
 
